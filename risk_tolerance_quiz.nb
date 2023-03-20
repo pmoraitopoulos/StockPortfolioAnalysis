@@ -1,0 +1,454 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20979,        446]
+NotebookOptionsPosition[     20242,        426]
+NotebookOutlinePosition[     20616,        442]
+CellTagsIndexPosition[     20573,        439]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"score", "=", "Null"}]], "Input",
+ CellChangeTimes->{
+  3.804250707476196*^9, {3.8042509418983383`*^9, 3.804250943825145*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"341b9678-2171-4ec8-abf0-f6c6ee0c71d9"],
+
+Cell[BoxData[
+ RowBox[{"While", "[", 
+  RowBox[{
+   RowBox[{"score", "\[Equal]", "Null"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"score", "=", 
+      RowBox[{"ChoiceDialog", "[", 
+       RowBox[{
+       "\"\<\[CapitalTheta]\:03ad\[Lambda]\[CurlyEpsilon]\[Tau]\[CurlyEpsilon]\
+ \[Nu]\[Alpha] \[Alpha]\[Pi]\[Alpha]\[Nu]\[Tau]\:03ae\[Sigma]\[CurlyEpsilon]\
+\[Tau]\[CurlyEpsilon] \[Sigma]\[CurlyEpsilon] \[CurlyEpsilon]\[Rho]\[Omega]\
+\[Tau]\[Eta]\[Mu]\[Alpha]\[Tau]\[Omicron]\[Lambda]\:03cc\[Gamma]\[Iota]\
+\[Omicron] \
+\[Pi]\[Rho]\[Omicron]\[Kappa]\[CurlyEpsilon]\[Iota]\[Mu]\:03ad\[Nu]\[Omicron]\
+\[Upsilon] \[Nu]\[Alpha] \[Upsilon]\[Pi]\[Omicron]\[Lambda]\[Omicron]\[Gamma]\
+\[Iota]\[Sigma]\[Tau]\[CurlyEpsilon]\:03af \[Tau]\[Omicron] \[CapitalEpsilon]\
+\[Pi]\[CurlyEpsilon]\[Nu]\[Delta]\[Upsilon]\[Tau]\[Iota]\[Kappa]\:03cc \
+\[CapitalPi]\[Rho]\[Omicron]\[CurlyPhi]\:03af\[Lambda] \[Sigma]\[Alpha]\
+\[FinalSigma];\>\"", ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{
+          "\"\<          \[CapitalEpsilon]\[Nu]\[Tau]\:03ac\[Xi]\
+\[CurlyEpsilon]\[Iota]          \>\"", "\[Rule]", " ", "0"}], ",", 
+          RowBox[{
+          "\"\<       \[CapitalAlpha]\[Kappa]\:03cd\[Rho]\[Omega]\[Sigma]\
+\[Eta]       \>\"", "\[Rule]", " ", 
+           RowBox[{"-", "1"}]}]}], "}"}]}], "]"}]}], ",", 
+     RowBox[{"While", "[", 
+      RowBox[{
+       RowBox[{"score", "\[Equal]", "0"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"score", "=", "0"}], ",", 
+         RowBox[{"j", "=", "0"}], ",", 
+         RowBox[{"results", "=", " ", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<1. \[CapitalSigma]\[CurlyEpsilon] \[Gamma]\[CurlyEpsilon]\
+\[Nu]\[Iota]\[Kappa]\:03ad\[FinalSigma] \
+\[Gamma]\[Rho]\[Alpha]\[Mu]\[Mu]\:03ad\[FinalSigma], \[Pi]\[Omega]\
+\[FinalSigma] \[Theta]\[Alpha] \[Delta]\[Sigma]\[FinalSigma] \[Pi]\
+\[CurlyEpsilon]\[Rho]\[Iota]\:03ad\[Gamma]\[Rho]\[Alpha]\[CurlyPhi]\
+\[CurlyEpsilon] \:03ad\[Nu]\[Alpha]\[FinalSigma] \[CurlyPhi]\:03af\[Lambda]\
+\[Omicron]\[FinalSigma] \[Sigma]\[Alpha]\[FinalSigma] \[Sigma]\[Chi]\
+\[CurlyEpsilon]\[Tau]\[Iota]\[Kappa]\:03ac \[Mu]\[CurlyEpsilon] \[Tau]\
+\[Omicron] \[Kappa]\:03af\[Nu]\[Delta]\[Upsilon]\[Nu]\[Omicron] \[Pi]\
+\[Omicron]\[Upsilon] \[Pi]\[Alpha]\:03af\[Rho]\[Nu]\[CurlyEpsilon]\[Tau]\
+\[CurlyEpsilon];\na. \[CapitalTau]\[Zeta]\[Omicron]\[Gamma]\[Alpha]\[Delta]\
+\:03cc\[Rho]\[Omicron]\[FinalSigma].\nb. \[CapitalPi]\[Rho]\:03cc\[Theta]\
+\[Upsilon]\[Mu]\[Omicron]\[FinalSigma] \[Nu]\[Alpha] \[Alpha]\[Nu]\
+\[CurlyEpsilon]\[Chi]\[Tau]\[CurlyEpsilon]\:03af\[Tau]\[CurlyEpsilon] \[Tau]\
+\[Omicron] \[Kappa]\:03af\[Nu]\[Delta]\[Upsilon]\[Nu]\[Omicron], \[Kappa]\
+\[Alpha]\[Tau]\:03cc\[Pi]\[Iota]\[Nu] \:03ad\[Rho]\[CurlyEpsilon]\[Upsilon]\
+\[Nu]\[Alpha]\[FinalSigma]..\nc. \[CapitalEpsilon]\[Pi]\[Iota]\[CurlyPhi]\
+\[Upsilon]\[Lambda]\[Alpha]\[Kappa]\[Iota]\[Kappa]\:03cc\[FinalSigma].\nd. \
+\[CapitalAlpha]\[Pi]\[CurlyEpsilon]\[Chi]\[Theta]\[CurlyEpsilon]\:03af\
+\[FinalSigma] \[Sigma]\[Tau]\[Omicron] \[Kappa]\:03af\[Nu]\[Delta]\[Upsilon]\
+\[Nu]\[Omicron].\n\>\"", "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<2. You are on a TV game show and can choose one of the \
+following. Which would you take?\na. $1,000 in cash\nb. A 50% chance at \
+winning $5,000\nc. A 25% chance at winning $10,000\nd. A 5% chance at winning \
+$100,000 \>\"", "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<3. You have just finished saving for a \
+\[OpenCurlyDoubleQuote]once-in-a-lifetime\[CloseCurlyDoubleQuote] vacation. \
+Three weeks before you plan to\nleave, you lose your job. You would:\na. \
+Cancel the vacation\nb. Take a much more modest vacation\nc. Go as scheduled, \
+reasoning that you need the time to prepare for a job search\nd. Extend your \
+vacation, because this might be your last chance to go first-class\>\"", 
+              "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<4. If you unexpectedly received $20,000 to invest, what \
+would you do?\na. Deposit it in a bank account, money market account, or an \
+insured CD\nb. Invest it in safe high quality bonds or bond mutual funds\nc. \
+Invest it in stocks or stock mutual funds \>\"", "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<5. In terms of experience, how comfortable are you \
+investing in stocks or stock mutual funds?\na. Not at all comfortable\nb. \
+Somewhat comfortable\nc. Very comfortable \>\"", "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<6. When you think of the word \[OpenCurlyDoubleQuote]risk\
+\[CloseCurlyDoubleQuote] which of the following words comes to mind first?\n\
+a. Loss\nb. Uncertainty\nc. Opportunity\nd. Thrill\>\"", "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<7. Some experts are predicting prices of assets such as \
+gold, jewels, collectibles, and real estate (hard\nassets) to increase in \
+value; bond prices may fall, however, experts tend to agree that government\n\
+bonds are relatively safe. Most of your investment assets are now in high \
+interest government bonds.\nWhat would you do?\na. Hold the bonds\nb. Sell \
+the bonds, put half the proceeds into money market accounts, and the other \
+half into hard\nassets\nc. Sell the bonds and put the total proceeds into \
+hard assets\nd. Sell the bonds, put all the money into hard assets, and \
+borrow additional money to buy more\>\"", "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              
+              "\"\<8. Given the best and worst case returns of the four \
+investment choices below, which would you prefer?\na. $200 gain best case; $0 \
+gain/loss worst case\nb. $800 gain best case; $200 loss worst case\nc. $2,600 \
+gain best case; $800 loss worst case\nd. $4,800 gain best case; $2,400 loss \
+worst case\>\"", "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<9. In addition to whatever you own, you have been given \
+$1,000. You are now asked to choose\nbetween:\na. A sure gain of $500\nb. A \
+50% chance to gain $1,000 and a 50% chance to gain nothing\>\"", "]"}], "]"}],
+             ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<10. In addition to whatever you own, you have been given \
+$2,000. You are now asked to choose\nbetween:\na. A sure loss of $500\nb. A \
+50% chance to lose $1,000 and a 50% chance to lose nothing\>\"", "]"}], "]"}],
+             ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<11. Suppose a relative left you an inheritance of \
+$100,000, stipulating in the will that you invest the\nmoney in ONE of the \
+following choices. Which one would you select?\na. A savings account or money \
+market mutual fund\nb. A mutual fund that owns stocks and bonds\nc. A \
+portfolio of 15 common stocks\nd. Commodities like gold, silver, and oil\>\"",
+               "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<12. If you had to invest $20,000, which of the following \
+investment choices would you find most\nappealing?\na. 60% in low-risk \
+investments 30% in medium-risk investments 10% in high-risk investments\nb. \
+30% in low-risk investments 40% in medium-risk investments 30% in high-risk \
+investments\nc. 10% in low-risk investments 40% in medium-risk investments \
+50% in high-risk investments\>\"", "]"}], "]"}], ",", 
+            RowBox[{"Text", "[", 
+             RowBox[{
+             "Input", "[", 
+              "\"\<13. Your trusted friend and neighbor, an experienced \
+geologist, is putting together a group of investors to\nfund an exploratory \
+gold mining venture. The venture could pay back 50 to 100 times the \
+investment\nif successful. If the mine is a bust, the entire investment is \
+worthless. Your friend estimates the\nchance of success is only 20%. If you \
+had the money, how much would you invest?\na. Nothing\nb. One month\
+\[CloseCurlyQuote]s salary\nc. Three month\[CloseCurlyQuote]s salary\nd. Six \
+month\[CloseCurlyQuote]s salary\>\"", "]"}], "]"}]}], "}"}]}], ",", 
+         RowBox[{"i", "=", "1"}], ",", 
+         RowBox[{"While", "[", 
+          RowBox[{
+           RowBox[{"i", "<", "14"}], ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"results", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "\[Equal]", " ", 
+                InterpretationBox[Cell[BoxData[
+                  FormBox["a", TextForm]], "InlineText",ExpressionUUID->
+                  "0a25d963-5f9f-498b-892b-22445e20a764"],
+                 Text[$CellContext`a]]}], ",", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"i", "\[Equal]", "1"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"score", "=", 
+                    RowBox[{"score", "+", "4"}]}], ",", 
+                   RowBox[{"j", "=", 
+                    RowBox[{"j", "+", "1"}]}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"score", "=", 
+                    RowBox[{"score", "+", "1"}]}], ",", 
+                   RowBox[{"j", "=", 
+                    RowBox[{"j", "+", "1"}]}]}], "}"}]}], "]"}]}], "]"}], ",", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"results", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "\[Equal]", 
+                InterpretationBox[Cell[BoxData[
+                  FormBox["b", TextForm]], "InlineText",ExpressionUUID->
+                  "739b056c-593e-4029-a67f-bc29e18d0c52"],
+                 Text[$CellContext`b]]}], ",", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"i", "\[Equal]", "1"}], "||", 
+                  RowBox[{"i", "\[Equal]", "9"}], "||", 
+                  RowBox[{"i", "\[Equal]", "10"}]}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"score", "=", 
+                    RowBox[{"score", "+", "3"}]}], ",", 
+                   RowBox[{"j", "=", 
+                    RowBox[{"j", "+", "1"}]}]}], "}"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"score", "=", 
+                    RowBox[{"score", "+", "2"}]}], ",", 
+                   RowBox[{"j", "=", 
+                    RowBox[{"j", "+", "1"}]}]}], "}"}]}], "]"}]}], "]"}], ",", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"results", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "\[Equal]", " ", 
+                InterpretationBox[Cell[BoxData[
+                  FormBox["c", TextForm]], "InlineText",ExpressionUUID->
+                  "aea7cdb8-85e2-4d59-883d-20a21ac07bd6"],
+                 Text[$CellContext`c]]}], ",", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"i", "\[Equal]", "1"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"score", "=", 
+                    RowBox[{"score", "+", "2"}]}], ",", 
+                   RowBox[{"j", "=", 
+                    RowBox[{"j", "+", "1"}]}]}], "}"}], ",", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"i", "==", " ", "9"}], "||", 
+                    RowBox[{"i", "==", "10"}]}], ",", 
+                   RowBox[{"Print", "[", "i", "]"}]}], "]"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"score", "=", 
+                    RowBox[{"score", "+", "3"}]}], ",", 
+                   RowBox[{"j", "=", 
+                    RowBox[{"j", "+", "1"}]}]}], "}"}]}], "]"}]}], "]"}], ",", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"results", "[", 
+                 RowBox[{"[", "i", "]"}], "]"}], "==", 
+                InterpretationBox[Cell[BoxData[
+                  FormBox["d", TextForm]], "InlineText",ExpressionUUID->
+                  "0247aa7c-edd5-49af-b20e-93f9a6e7fd58"],
+                 Text[$CellContext`d]]}], ",", 
+               RowBox[{"If", "[", 
+                RowBox[{
+                 RowBox[{"i", "\[Equal]", "1"}], ",", 
+                 RowBox[{"{", 
+                  RowBox[{
+                   RowBox[{"score", "=", 
+                    RowBox[{"score", "+", "1"}]}], ",", 
+                   RowBox[{"j", "=", 
+                    RowBox[{"j", "+", "1"}]}]}], "}"}], ",", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{
+                    RowBox[{"i", "==", "4"}], "||", 
+                    RowBox[{"i", "==", "5"}], "||", 
+                    RowBox[{"i", "==", "9"}], "||", 
+                    RowBox[{"i", "==", "10"}], "||", 
+                    RowBox[{"i", "==", "12"}]}], ",", 
+                   RowBox[{"Print", "[", "i", "]"}], ",", 
+                   RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"score", "=", 
+                    RowBox[{"score", "+", "4"}]}], ",", 
+                    RowBox[{"j", "=", 
+                    RowBox[{"j", "+", "1"}]}]}], "}"}]}], "]"}]}], "]"}]}], 
+              "]"}], ",", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"results", "[", 
+                  RowBox[{"[", "9", "]"}], "]"}], "\[Equal]", " ", 
+                 InterpretationBox[Cell[BoxData[
+                   FormBox["c", TextForm]], "InlineText",ExpressionUUID->
+                   "2cf684af-1253-44b4-824a-c415f80e2bf5"],
+                  Text[$CellContext`c]]}], "||", 
+                RowBox[{
+                 RowBox[{"results", "[", 
+                  RowBox[{"[", "10", "]"}], "]"}], "\[Equal]", " ", 
+                 InterpretationBox[Cell[BoxData[
+                   FormBox["c", TextForm]], "InlineText",ExpressionUUID->
+                   "e24af3b5-20e6-481b-bad9-194337afc5cd"],
+                  Text[$CellContext`c]]}]}], ",", 
+               RowBox[{"score", "=", "0"}]}], "]"}], ",", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{
+                RowBox[{
+                 RowBox[{"results", "[", 
+                  RowBox[{"[", "4", "]"}], "]"}], "==", 
+                 InterpretationBox[Cell[BoxData[
+                   FormBox["d", TextForm]], "InlineText",ExpressionUUID->
+                   "92f97e0b-ccdd-46c0-8712-e8ec26f8f795"],
+                  Text[$CellContext`d]]}], "||", 
+                RowBox[{
+                 RowBox[{"results", "[", 
+                  RowBox[{"[", "5", "]"}], "]"}], "==", 
+                 InterpretationBox[Cell[BoxData[
+                   FormBox["d", TextForm]], "InlineText",ExpressionUUID->
+                   "b2722cb0-bc14-481e-8ab3-0882191153a3"],
+                  Text[$CellContext`d]]}], "||", 
+                RowBox[{
+                 RowBox[{"results", "[", 
+                  RowBox[{"[", "9", "]"}], "]"}], "==", 
+                 InterpretationBox[Cell[BoxData[
+                   FormBox["d", TextForm]], "InlineText",ExpressionUUID->
+                   "131c5c7e-51a7-474f-b1ca-4677f14d6ecd"],
+                  Text[$CellContext`d]]}], "||", 
+                RowBox[{
+                 RowBox[{"results", "[", 
+                  RowBox[{"[", "10", "]"}], "]"}], "==", 
+                 InterpretationBox[Cell[BoxData[
+                   FormBox["d", TextForm]], "InlineText",ExpressionUUID->
+                   "c319eafe-648e-4a47-9c92-a33ff47e731c"],
+                  Text[$CellContext`d]]}], "||", 
+                RowBox[{
+                 RowBox[{"results", "[", 
+                  RowBox[{"[", "12", "]"}], "]"}], "==", 
+                 InterpretationBox[Cell[BoxData[
+                   FormBox["d", TextForm]], "InlineText",ExpressionUUID->
+                   "6b928e0b-88dd-4dc1-be67-f14149c70c4f"],
+                  Text[$CellContext`d]]}]}], ",", 
+               RowBox[{"score", "=", "0"}]}], "]"}], ",", 
+             RowBox[{"i", "=", 
+              RowBox[{"i", "+", "1"}]}]}], "}"}]}], "]"}], ",", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"score", "\[Equal]", "0"}], "||", 
+            RowBox[{"j", "\[NotEqual]", "13"}]}], ",", 
+           RowBox[{"score", "=", 
+            RowBox[{"ChoiceDialog", "[", 
+             RowBox[{
+             "\"\<\[CapitalUpsilon]\[Pi]\:03ae\[Rho]\[Xi]\[CurlyEpsilon] \
+\:03ad\[Nu]\[Alpha] \[Lambda]\:03ac\[Theta]\[Omicron]\[FinalSigma] \[Sigma]\
+\[Tau]\[Eta] \[Delta]\[Iota]\[Alpha]\[Delta]\[Iota]\[Kappa]\[Alpha]\[Sigma]\
+\:03af\[Alpha] \[Tau]\[Omicron]\[Upsilon] \[CurlyEpsilon]\[Rho]\[Omega]\[Tau]\
+\[Eta]\[Mu]\[Alpha]\[Tau]\[Omicron]\[Lambda]\[Omicron]\[Gamma]\:03af\[Omicron]\
+\[Upsilon]. \
+\[CapitalTheta]\:03ad\[Lambda]\[CurlyEpsilon]\[Tau]\[CurlyEpsilon] \[Nu]\
+\[Alpha] \[Tau]\[Omicron] \[CurlyEpsilon]\[Pi]\[Alpha]\[Nu]\[Alpha]\[Lambda]\
+\:03ac\[Beta]\[CurlyEpsilon]\[Tau]\[CurlyEpsilon];\>\"", ",", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                "\"\<          \[CapitalEpsilon]\[Nu]\[Tau]\:03ac\[Xi]\
+\[CurlyEpsilon]\[Iota]          \>\"", "\[Rule]", " ", "0"}], ",", 
+                RowBox[{
+                "\"\<       \[CapitalAlpha]\[Kappa]\:03cd\[Rho]\[Omega]\
+\[Sigma]\[Eta]       \>\"", "\[Rule]", " ", 
+                 RowBox[{"-", "Null"}]}]}], "}"}]}], "]"}]}]}], "]"}], ",", 
+         RowBox[{"Clear", "[", 
+          RowBox[{"results", ",", "i", ",", "j"}], "]"}]}], "}"}]}], "]"}]}], 
+    "}"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.8042509679791746`*^9, 3.8042511609315867`*^9}, {
+   3.8042720630255976`*^9, 3.8042721099633207`*^9}, {3.8042721561036396`*^9, 
+   3.804272176134888*^9}, 3.8042725149786963`*^9, {3.8042726353849344`*^9, 
+   3.804272637572405*^9}},ExpressionUUID->"a58c22bc-ebdc-4dbc-a6bd-\
+8fa16b992bae"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["score"], "Input",
+ CellChangeTimes->{{3.8042725458848877`*^9, 3.80427254708802*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"53dfa042-0131-4f85-ac22-bd84c440d6fb"],
+
+Cell[BoxData["29"], "Output",
+ CellChangeTimes->{3.8042725476037035`*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"722ba58d-f5af-4359-8432-f84f9b98cabd"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{
+  "\[Mu]\[Pi]\[Omicron]\[Rho]\:03ce", " ", "\[Nu]\[Alpha]", " ", 
+   "\[Tau]\[Omicron]", " ", "\[Tau]\[Rho]\:03ad\[Xi]\[Omega]", " ", 
+   "\[Mu]\[CurlyEpsilon]", " ", "check", " ", "box", " ", "or", " ", "sth", 
+   " ", "like", " ", "that"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.804273000805827*^9, 
+  3.804273031164849*^9}},ExpressionUUID->"ac3ae392-7e0c-4d18-9bbf-\
+b87055b4f6c3"]
+},
+WindowSize->{1920, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 228, 4, 55, "Input",ExpressionUUID->"341b9678-2171-4ec8-abf0-f6c6ee0c71d9"],
+Cell[789, 26, 18650, 376, 2504, "Input",ExpressionUUID->"a58c22bc-ebdc-4dbc-a6bd-8fa16b992bae"],
+Cell[CellGroupData[{
+Cell[19464, 406, 177, 2, 35, "Input",ExpressionUUID->"53dfa042-0131-4f85-ac22-bd84c440d6fb"],
+Cell[19644, 410, 152, 2, 40, "Output",ExpressionUUID->"722ba58d-f5af-4359-8432-f84f9b98cabd"]
+}, Open  ]],
+Cell[19811, 415, 427, 9, 35, "Input",ExpressionUUID->"ac3ae392-7e0c-4d18-9bbf-b87055b4f6c3"]
+}
+]
+*)
+

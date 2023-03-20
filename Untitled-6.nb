@@ -1,0 +1,481 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20561,        471]
+NotebookOptionsPosition[     20131,        455]
+NotebookOutlinePosition[     20474,        470]
+CellTagsIndexPosition[     20431,        467]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"bt13", " ", "=", " ", 
+  RowBox[{"Manipulate", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"weights", "=", 
+      RowBox[{"DeleteCases", "[", 
+       RowBox[{
+        RowBox[{"Flatten", "[", 
+         RowBox[{
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"a", ",", " ", "b", ",", " ", 
+              RowBox[{"1", "-", "a", "-", "b"}]}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"a", ",", " ", "0", ",", "1", ",", " ", ".02"}], "}"}], 
+            ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"b", ",", "0", ",", " ", "1", ",", " ", ".02"}], "}"}]}],
+            "]"}], ",", "1"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"_", ",", "_", ",", 
+          RowBox[{"x_", "/;", 
+           RowBox[{"x", "<", "0"}]}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"points", "=", 
+      RowBox[{"Transpose", "[", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Sqrt", "/@", 
+          RowBox[{"Table", "[", 
+           RowBox[{
+            RowBox[{"With", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"wX", "=", 
+                 RowBox[{"weights", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"i", ",", "1"}], "]"}], "]"}]}], ",", " ", 
+                RowBox[{"wY", "=", 
+                 RowBox[{"weights", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"i", ",", "2"}], "]"}], "]"}]}], ",", " ", 
+                RowBox[{"wZ", "=", 
+                 RowBox[{"weights", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"i", ",", "3"}], "]"}], "]"}]}]}], "}"}], ",", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"wX", "^", "2"}], " ", 
+                RowBox[{"\[Sigma]X", "^", "2"}]}], " ", "+", 
+               RowBox[{
+                RowBox[{"wY", "^", "2"}], " ", 
+                RowBox[{"\[Sigma]Y", "^", "2"}]}], " ", "+", " ", 
+               RowBox[{
+                RowBox[{"wZ", "^", "2"}], " ", 
+                RowBox[{"\[Sigma]Z", "^", "2"}]}], " ", "+", " ", 
+               RowBox[{
+               "2", " ", "wX", " ", "wY", " ", "\[Sigma]X", " ", "\[Sigma]Y", 
+                " ", "rXY"}], " ", "+", " ", 
+               RowBox[{
+               "2", " ", "wX", " ", "wZ", " ", "\[Sigma]X", " ", "\[Sigma]Z", 
+                " ", "rXZ"}], " ", "+", "   ", 
+               RowBox[{
+               "2", " ", "wY", " ", "wZ", " ", "\[Sigma]Y", " ", "\[Sigma]Z", 
+                " ", "rYZ"}]}]}], "]"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"i", ",", 
+              RowBox[{"Length", "[", "weights", "]"}]}], "}"}]}], "]"}]}], 
+         ",", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"With", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"wX", "=", 
+                RowBox[{"weights", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "1"}], "]"}], "]"}]}], ",", " ", 
+               RowBox[{"wY", "=", 
+                RowBox[{"weights", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "2"}], "]"}], "]"}]}], ",", " ", 
+               RowBox[{"wZ", "=", 
+                RowBox[{"weights", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "3"}], "]"}], "]"}]}]}], "}"}], ",", 
+             RowBox[{
+              RowBox[{"wX", " ", "\[Mu]X"}], " ", "+", 
+              RowBox[{"wY", " ", "\[Mu]Y"}], " ", "+", 
+              RowBox[{"wZ", " ", "\[Mu]Z"}]}]}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", " ", 
+             RowBox[{"Length", "[", "weights", "]"}]}], "}"}]}], "]"}]}], 
+        "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Show", "[", 
+      RowBox[{
+       RowBox[{"ListPlot", "[", 
+        RowBox[{"points", ",", 
+         RowBox[{"PlotStyle", "\[Rule]", " ", 
+          RowBox[{"PointSize", "[", ".01", "]"}]}], ",", " ", 
+         RowBox[{"PlotRange", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"0", ",", ".2"}], "}"}], ",", " ", 
+            RowBox[{"{", 
+             RowBox[{"0", ",", ".5"}], "}"}]}], "}"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"AxesLabel", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<portfolio volatility\>\"", ",", "\"\<Label\>\""}], 
+             "]"}], ",", 
+            RowBox[{"Style", "[", " ", 
+             RowBox[{
+             "\"\<portfolio expected return\>\"", ",", " ", "\"\<Label\>\""}],
+              "]"}]}], "}"}]}], ",", " ", 
+         RowBox[{"AspectRatio", "\[Rule]", "1.5"}], ",", " ", 
+         RowBox[{"Ticks", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{".05", ",", ".15"}], "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{".2", ",", ".4"}], "}"}]}], "}"}]}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"ListLinePlot", "[", 
+        RowBox[{
+         RowBox[{"Tooltip", "[", 
+          RowBox[{
+           RowBox[{"FixedPoint", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Delete", "[", 
+               RowBox[{"#", ",", " ", 
+                RowBox[{"Position", "[", 
+                 RowBox[{
+                  RowBox[{"Prepend", "[", 
+                   RowBox[{
+                    RowBox[{"Differences", "[", 
+                    RowBox[{
+                    RowBox[{"Transpose", "[", "#", "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", "0"}], "]"}], 
+                  ",", 
+                  RowBox[{"d_", "/;", 
+                   RowBox[{"d", "<", "0"}]}]}], "]"}]}], "]"}], "&"}], ",", 
+             " ", 
+             RowBox[{"Sort", "[", "points", "]"}]}], "]"}], ",", " ", 
+           "\"\<efficient frontier\>\""}], "]"}], ",", 
+         RowBox[{"PlotStyle", "\[Rule]", 
+          RowBox[{"{", 
+           RowBox[{"Thick", ",", " ", "Yellow"}], "}"}]}]}], "]"}], ",", 
+       RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}]}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\[Mu]X", ",", ".14", ",", " ", 
+        "\"\<\!\(\*SubscriptBox[\(\[Mu]\), \(1\)]\)\>\""}], "}"}], ",", " ", 
+      "0", ",", " ", ".3", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\[Sigma]X", ",", ".05", ",", 
+        "\"\<\!\(\*SubscriptBox[\(\[Sigma]\), \(1\)]\)\>\""}], "}"}], ",", 
+      " ", "0", ",", " ", ".7", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", "Delimiter", 
+    ",", " ", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\[Mu]Y", ",", ".1", ",", 
+        "\"\<\!\(\*SubscriptBox[\(\[Mu]\), \(2\)]\)\>\""}], "}"}], ",", " ", 
+      "0", ",", " ", ".3", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\[Sigma]Y", ",", ".15", ",", 
+        "\"\<\!\(\*SubscriptBox[\(\[Sigma]\), \(2\)]\)\>\""}], "}"}], ",", 
+      " ", "0", ",", " ", ".7", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", "  ", 
+    "Delimiter", ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\[Mu]Z", ",", ".5", ",", 
+        "\"\<\!\(\*SubscriptBox[\(\[Mu]\), \(3\)]\)\>\""}], " ", "}"}], ",", 
+      "0", ",", " ", ".5", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\[Sigma]Z", ",", ".2", ",", 
+        "\"\<\!\(\*SubscriptBox[\(\[Sigma]\), \(3\)]\)\>\""}], "}"}], ",", 
+      " ", "0", ",", " ", ".7", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", "Delimiter", 
+    ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "rXY", ",", ".2", ",", 
+        "\"\<\!\(\*SubscriptBox[\(\[Rho]\), \(12\)]\)\>\""}], "}"}], ",", " ", 
+      RowBox[{"-", "1"}], ",", " ", "1", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"rXZ", ",", 
+        RowBox[{"-", ".2"}], ",", 
+        "\"\<\!\(\*SubscriptBox[\(\[Rho]\), \(13\)]\)\>\""}], "}"}], ",", " ", 
+      RowBox[{"-", "1"}], ",", " ", "1", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"rYZ", ",", 
+        RowBox[{"-", ".1"}], ",", 
+        "\"\<\!\(\*SubscriptBox[\(\[Rho]\), \(23\)]\)\>\""}], "}"}], ",", " ", 
+      RowBox[{"-", "1"}], ",", " ", "1", ",", ".01", ",", 
+      RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", " ", 
+    RowBox[{"TrackedSymbols", "\[RuleDelayed]", "Manipulate"}], ",", 
+    RowBox[{"AutorunSequencing", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"1", ",", "2", ",", "3", ",", "5"}], "}"}]}], ",", 
+    RowBox[{
+    "FrameLabel", "\[Rule]", 
+     "\"\<This is Efficient Frontier Graph. The variables are \[Mu] which is \
+Expected Return or Mean Return, \n\[Sigma] repressents Standard Deviation and \
+\[Rho] for Correlation. The Blue Dots repressent the Return and Risk Level \n\
+for every combination of these 3 Stocks. Efficient Frontier is all the \
+Combinations where the Mean Returns Maximized\nfor a certain level of Risk, \
+or the Risk Level Minimized for certain level of Return\>\""}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.795635550202423*^9, 3.7956358390306253`*^9}, {
+  3.795635900718398*^9, 3.795635982343046*^9}, {3.795636062922283*^9, 
+  3.7956360744368887`*^9}, {3.7956362621869917`*^9, 3.7956362719211817`*^9}, {
+  3.7956363245149183`*^9, 3.795636354171193*^9}, {3.7956364983276863`*^9, 
+  3.795636510514938*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"c0cb9dce-61b3-4f91-934d-faff3aa913c0"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`rXY$$ = 
+    0.2, $CellContext`rXZ$$ = -0.2, $CellContext`rYZ$$ = -0.1, $CellContext`\
+\[Mu]X$$ = 0.14, $CellContext`\[Mu]Y$$ = 0.1, $CellContext`\[Mu]Z$$ = 
+    0.5, $CellContext`\[Sigma]X$$ = 0.05, $CellContext`\[Sigma]Y$$ = 
+    0.15, $CellContext`\[Sigma]Z$$ = 0.2, Typeset`show$$ = True, 
+    Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Mu]X$$], 0.14, 
+       "\!\(\*SubscriptBox[\(\[Mu]\), \(1\)]\)"}, 0, 0.3, 0.01}, {{
+       Hold[$CellContext`\[Sigma]X$$], 0.05, 
+       "\!\(\*SubscriptBox[\(\[Sigma]\), \(1\)]\)"}, 0, 0.7, 0.01}, {{
+       Hold[$CellContext`\[Mu]Y$$], 0.1, 
+       "\!\(\*SubscriptBox[\(\[Mu]\), \(2\)]\)"}, 0, 0.3, 0.01}, {{
+       Hold[$CellContext`\[Sigma]Y$$], 0.15, 
+       "\!\(\*SubscriptBox[\(\[Sigma]\), \(2\)]\)"}, 0, 0.7, 0.01}, {{
+       Hold[$CellContext`\[Mu]Z$$], 0.5, 
+       "\!\(\*SubscriptBox[\(\[Mu]\), \(3\)]\)"}, 0, 0.5, 0.01}, {{
+       Hold[$CellContext`\[Sigma]Z$$], 0.2, 
+       "\!\(\*SubscriptBox[\(\[Sigma]\), \(3\)]\)"}, 0, 0.7, 0.01}, {{
+       Hold[$CellContext`rXY$$], 0.2, 
+       "\!\(\*SubscriptBox[\(\[Rho]\), \(12\)]\)"}, -1, 1, 0.01}, {{
+       Hold[$CellContext`rXZ$$], -0.2, 
+       "\!\(\*SubscriptBox[\(\[Rho]\), \(13\)]\)"}, -1, 1, 0.01}, {{
+       Hold[$CellContext`rYZ$$], -0.1, 
+       "\!\(\*SubscriptBox[\(\[Rho]\), \(23\)]\)"}, -1, 1, 0.01}}, 
+    Typeset`size$$ = {400., {196., 201.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Mu]X$67804$$ = 0, $CellContext`\[Sigma]X$67805$$ = 
+    0, $CellContext`\[Mu]Y$67806$$ = 0, $CellContext`\[Sigma]Y$67807$$ = 
+    0, $CellContext`\[Mu]Z$67808$$ = 0, $CellContext`\[Sigma]Z$67809$$ = 
+    0, $CellContext`rXY$67810$$ = 0, $CellContext`rXZ$67811$$ = 
+    0, $CellContext`rYZ$67812$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`rXY$$ = 
+        0.2, $CellContext`rXZ$$ = -0.2, $CellContext`rYZ$$ = -0.1, \
+$CellContext`\[Mu]X$$ = 0.14, $CellContext`\[Mu]Y$$ = 
+        0.1, $CellContext`\[Mu]Z$$ = 0.5, $CellContext`\[Sigma]X$$ = 
+        0.05, $CellContext`\[Sigma]Y$$ = 0.15, $CellContext`\[Sigma]Z$$ = 
+        0.2}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Mu]X$$, $CellContext`\[Mu]X$67804$$, 0], 
+        Hold[$CellContext`\[Sigma]X$$, $CellContext`\[Sigma]X$67805$$, 0], 
+        Hold[$CellContext`\[Mu]Y$$, $CellContext`\[Mu]Y$67806$$, 0], 
+        Hold[$CellContext`\[Sigma]Y$$, $CellContext`\[Sigma]Y$67807$$, 0], 
+        Hold[$CellContext`\[Mu]Z$$, $CellContext`\[Mu]Z$67808$$, 0], 
+        Hold[$CellContext`\[Sigma]Z$$, $CellContext`\[Sigma]Z$67809$$, 0], 
+        Hold[$CellContext`rXY$$, $CellContext`rXY$67810$$, 0], 
+        Hold[$CellContext`rXZ$$, $CellContext`rXZ$67811$$, 0], 
+        Hold[$CellContext`rYZ$$, $CellContext`rYZ$67812$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`weights = DeleteCases[
+          Flatten[
+           
+           Table[{$CellContext`a, $CellContext`b, 
+             1 - $CellContext`a - $CellContext`b}, {$CellContext`a, 0, 1, 
+             0.02}, {$CellContext`b, 0, 1, 0.02}], 1], {
+           Blank[], 
+           Blank[], 
+           Condition[
+            Pattern[$CellContext`x, 
+             Blank[]], $CellContext`x < 0]}]; $CellContext`points = Transpose[{
+           Map[Sqrt, 
+            Table[
+             
+             With[{$CellContext`wX$ = 
+               Part[$CellContext`weights, $CellContext`i, 
+                 1], $CellContext`wY$ = 
+               Part[$CellContext`weights, $CellContext`i, 
+                 2], $CellContext`wZ$ = 
+               Part[$CellContext`weights, $CellContext`i, 
+                 3]}, $CellContext`wX$^2 $CellContext`\[Sigma]X$$^2 + \
+$CellContext`wY$^2 $CellContext`\[Sigma]Y$$^2 + $CellContext`wZ$^2 \
+$CellContext`\[Sigma]Z$$^2 + 
+              2 $CellContext`wX$ $CellContext`wY$ $CellContext`\[Sigma]X$$ \
+$CellContext`\[Sigma]Y$$ $CellContext`rXY$$ + 
+              2 $CellContext`wX$ $CellContext`wZ$ $CellContext`\[Sigma]X$$ \
+$CellContext`\[Sigma]Z$$ $CellContext`rXZ$$ + 
+              2 $CellContext`wY$ $CellContext`wZ$ $CellContext`\[Sigma]Y$$ \
+$CellContext`\[Sigma]Z$$ $CellContext`rYZ$$], {$CellContext`i, 
+              Length[$CellContext`weights]}]], 
+           Table[
+            
+            With[{$CellContext`wX$ = 
+              Part[$CellContext`weights, $CellContext`i, 1], $CellContext`wY$ = 
+              Part[$CellContext`weights, $CellContext`i, 2], $CellContext`wZ$ = 
+              Part[$CellContext`weights, $CellContext`i, 
+                3]}, $CellContext`wX$ $CellContext`\[Mu]X$$ + \
+$CellContext`wY$ $CellContext`\[Mu]Y$$ + $CellContext`wZ$ \
+$CellContext`\[Mu]Z$$], {$CellContext`i, 
+             Length[$CellContext`weights]}]}]; Show[
+         ListPlot[$CellContext`points, PlotStyle -> PointSize[0.01], 
+          PlotRange -> {{0, 0.2}, {0, 0.5}}, AxesLabel -> {
+            Style["portfolio volatility", "Label"], 
+            Style["portfolio expected return", "Label"]}, AspectRatio -> 1.5, 
+          Ticks -> {{0.05, 0.15}, {0.2, 0.4}}], 
+         ListLinePlot[
+          Tooltip[
+           FixedPoint[Delete[#, 
+             Position[
+              Prepend[
+               Differences[
+                Part[
+                 Transpose[#], 2]], 0], 
+              Condition[
+               Pattern[$CellContext`d, 
+                Blank[]], $CellContext`d < 0]]]& , 
+            Sort[$CellContext`points]], "efficient frontier"], 
+          PlotStyle -> {Thick, Yellow}], ImageSize -> 400]), 
+      "Specifications" :> {{{$CellContext`\[Mu]X$$, 0.14, 
+          "\!\(\*SubscriptBox[\(\[Mu]\), \(1\)]\)"}, 0, 0.3, 0.01, Appearance -> 
+         "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`\[Sigma]X$$, 0.05, 
+          "\!\(\*SubscriptBox[\(\[Sigma]\), \(1\)]\)"}, 0, 0.7, 0.01, 
+         Appearance -> "Labeled", ImageSize -> Tiny}, 
+        Delimiter, {{$CellContext`\[Mu]Y$$, 0.1, 
+          "\!\(\*SubscriptBox[\(\[Mu]\), \(2\)]\)"}, 0, 0.3, 0.01, Appearance -> 
+         "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`\[Sigma]Y$$, 0.15, 
+          "\!\(\*SubscriptBox[\(\[Sigma]\), \(2\)]\)"}, 0, 0.7, 0.01, 
+         Appearance -> "Labeled", ImageSize -> Tiny}, 
+        Delimiter, {{$CellContext`\[Mu]Z$$, 0.5, 
+          "\!\(\*SubscriptBox[\(\[Mu]\), \(3\)]\)"}, 0, 0.5, 0.01, Appearance -> 
+         "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`\[Sigma]Z$$, 0.2, 
+          "\!\(\*SubscriptBox[\(\[Sigma]\), \(3\)]\)"}, 0, 0.7, 0.01, 
+         Appearance -> "Labeled", ImageSize -> Tiny}, 
+        Delimiter, {{$CellContext`rXY$$, 0.2, 
+          "\!\(\*SubscriptBox[\(\[Rho]\), \(12\)]\)"}, -1, 1, 0.01, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`rXZ$$, -0.2, 
+          "\!\(\*SubscriptBox[\(\[Rho]\), \(13\)]\)"}, -1, 1, 0.01, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`rYZ$$, -0.1, 
+          "\!\(\*SubscriptBox[\(\[Rho]\), \(23\)]\)"}, -1, 1, 0.01, 
+         Appearance -> "Labeled", ImageSize -> Tiny}}, 
+      "Options" :> {
+       TrackedSymbols :> Manipulate, AutorunSequencing -> {1, 2, 3, 5}, 
+        FrameLabel -> 
+        "This is Efficient Frontier Graph. The variables are \[Mu] which is \
+Expected Return or Mean Return, \n\[Sigma] repressents Standard Deviation and \
+\[Rho] for Correlation. The Blue Dots repressent the Return and Risk Level \n\
+for every combination of these 3 Stocks. Efficient Frontier is all the \
+Combinations where the Mean Returns Maximized\nfor a certain level of Risk, \
+or the Risk Level Minimized for certain level of Return"}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{620., {262., 268.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.795636162030635*^9, 3.795636274108674*^9, {3.7956363280149174`*^9, 
+   3.7956363548748727`*^9}, 3.7956365114838514`*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"f9ebc196-42c2-4eda-a4eb-c9340a4551f3"]
+}, Open  ]]
+},
+WindowSize->{1440, 817},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 10752, 261, 604, "Input",ExpressionUUID->"c0cb9dce-61b3-4f91-934d-faff3aa913c0"],
+Cell[11335, 285, 8780, 167, 549, "Output",ExpressionUUID->"f9ebc196-42c2-4eda-a4eb-c9340a4551f3"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

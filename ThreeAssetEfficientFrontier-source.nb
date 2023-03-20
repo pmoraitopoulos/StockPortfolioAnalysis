@@ -1,0 +1,2016 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 8.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[    121842,       2008]
+NotebookOptionsPosition[    118329,       1952]
+NotebookOutlinePosition[    118974,       1977]
+CellTagsIndexPosition[    118931,       1974]
+WindowTitle->Three-Asset Efficient Frontier - Source
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["", "Section",
+ CellFrame->{{0, 0}, {0, 0}},
+ ShowCellBracket->False,
+ CellChangeTimes->{3.7955278208096743`*^9},
+ FontColor->RGBColor[
+  0.597406, 0, 
+   0.0527047],ExpressionUUID->"667fad28-a6d2-4fbf-83d9-2cb4ef89623a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Section",
+ CellFrame->{{0, 0}, {0, 0}},
+ ShowCellBracket->False,
+ CellChangeTimes->{
+  3.795527822590646*^9},ExpressionUUID->"9a647a25-adab-4f4e-ae1d-\
+39ffc2d2d80a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"weights", "=", 
+     RowBox[{"DeleteCases", "[", 
+      RowBox[{
+       RowBox[{"Flatten", "[", 
+        RowBox[{
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"a", ",", " ", "b", ",", " ", 
+             RowBox[{"1", "-", "a", "-", "b"}]}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"a", ",", " ", "0", ",", "1", ",", " ", ".02"}], "}"}], 
+           ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"b", ",", "0", ",", " ", "1", ",", " ", ".02"}], "}"}]}], 
+          "]"}], ",", "1"}], "]"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"_", ",", "_", ",", 
+         RowBox[{"x_", "/;", 
+          RowBox[{"x", "<", "0"}]}]}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"points", "=", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Sqrt", "/@", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"With", "[", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"wX", "=", 
+                RowBox[{"weights", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "1"}], "]"}], "]"}]}], ",", " ", 
+               RowBox[{"wY", "=", 
+                RowBox[{"weights", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "2"}], "]"}], "]"}]}], ",", " ", 
+               RowBox[{"wZ", "=", 
+                RowBox[{"weights", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "3"}], "]"}], "]"}]}]}], "}"}], ",", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"wX", "^", "2"}], " ", 
+               RowBox[{"\[Sigma]X", "^", "2"}]}], " ", "+", 
+              RowBox[{
+               RowBox[{"wY", "^", "2"}], " ", 
+               RowBox[{"\[Sigma]Y", "^", "2"}]}], " ", "+", " ", 
+              RowBox[{
+               RowBox[{"wZ", "^", "2"}], " ", 
+               RowBox[{"\[Sigma]Z", "^", "2"}]}], " ", "+", " ", 
+              RowBox[{
+              "2", " ", "wX", " ", "wY", " ", "\[Sigma]X", " ", "\[Sigma]Y", 
+               " ", "rXY"}], " ", "+", " ", 
+              RowBox[{
+              "2", " ", "wX", " ", "wZ", " ", "\[Sigma]X", " ", "\[Sigma]Z", 
+               " ", "rXZ"}], " ", "+", "   ", 
+              RowBox[{
+              "2", " ", "wY", " ", "wZ", " ", "\[Sigma]Y", " ", "\[Sigma]Z", 
+               " ", "rYZ"}]}]}], "]"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", 
+             RowBox[{"Length", "[", "weights", "]"}]}], "}"}]}], "]"}]}], ",", 
+        RowBox[{"Table", "[", 
+         RowBox[{
+          RowBox[{"With", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+              RowBox[{"wX", "=", 
+               RowBox[{"weights", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "1"}], "]"}], "]"}]}], ",", " ", 
+              RowBox[{"wY", "=", 
+               RowBox[{"weights", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "2"}], "]"}], "]"}]}], ",", " ", 
+              RowBox[{"wZ", "=", 
+               RowBox[{"weights", "[", 
+                RowBox[{"[", 
+                 RowBox[{"i", ",", "3"}], "]"}], "]"}]}]}], "}"}], ",", 
+            RowBox[{
+             RowBox[{"wX", " ", "\[Mu]X"}], " ", "+", 
+             RowBox[{"wY", " ", "\[Mu]Y"}], " ", "+", 
+             RowBox[{"wZ", " ", "\[Mu]Z"}]}]}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", " ", 
+            RowBox[{"Length", "[", "weights", "]"}]}], "}"}]}], "]"}]}], 
+       "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Show", "[", 
+     RowBox[{
+      RowBox[{"ListPlot", "[", 
+       RowBox[{"points", ",", 
+        RowBox[{"PlotStyle", "\[Rule]", " ", 
+         RowBox[{"PointSize", "[", ".01", "]"}]}], ",", " ", 
+        RowBox[{"PlotRange", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"0", ",", ".2"}], "}"}], ",", " ", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", ".5"}], "}"}]}], "}"}]}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"AxesLabel", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<Portfolio Risk Level\>\"", ",", "\"\<Label\>\""}], 
+            "]"}], ",", 
+           RowBox[{"Style", "[", " ", 
+            RowBox[{
+            "\"\<Portfolio Mean Return\>\"", ",", " ", "\"\<Label\>\""}], 
+            "]"}]}], "}"}]}], ",", " ", 
+        RowBox[{"AspectRatio", "\[Rule]", "1.5"}], ",", " ", 
+        RowBox[{"Ticks", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{".05", ",", ".15"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{".2", ",", ".4"}], "}"}]}], "}"}]}]}], "]"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ListLinePlot", "[", 
+       RowBox[{
+        RowBox[{"Tooltip", "[", 
+         RowBox[{
+          RowBox[{"FixedPoint", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Delete", "[", 
+              RowBox[{"#", ",", " ", 
+               RowBox[{"Position", "[", 
+                RowBox[{
+                 RowBox[{"Prepend", "[", 
+                  RowBox[{
+                   RowBox[{"Differences", "[", 
+                    RowBox[{
+                    RowBox[{"Transpose", "[", "#", "]"}], "[", 
+                    RowBox[{"[", "2", "]"}], "]"}], "]"}], ",", "0"}], "]"}], 
+                 ",", 
+                 RowBox[{"d_", "/;", 
+                  RowBox[{"d", "<", "0"}]}]}], "]"}]}], "]"}], "&"}], ",", 
+            " ", 
+            RowBox[{"Sort", "[", "points", "]"}]}], "]"}], ",", " ", 
+          "\"\<efficient frontier\>\""}], "]"}], ",", 
+        RowBox[{"PlotStyle", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"Thick", ",", " ", "Yellow"}], "}"}]}]}], "]"}], ",", 
+      RowBox[{"ImageSize", "\[Rule]", "400"}]}], "]"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Mu]X", ",", 
+       RowBox[{"-", "0.00267"}], ",", " ", 
+       "\"\<\!\(\*SubscriptBox[\(ER\), \(1\)]\)\>\""}], "}"}], ",", 
+     RowBox[{"-", "0.00319125803957406"}], ",", " ", "0.300", ",", 
+     ".000380855159680057", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\[Sigma]X", ",", "0.403382517150", ",", 
+       "\"\<\!\(\*SubscriptBox[\(\[Sigma]\), \(1\)]\)\>\""}], "}"}], ",", " ",
+      "0", ",", " ", "1", ",", ".001", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", "Delimiter", ",",
+    " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\[Mu]Y", ",", "0.1073486703", ",", 
+       "\"\<\!\(\*SubscriptBox[\(ER\), \(2\)]\)\>\""}], "}"}], ",", " ", "0", 
+     ",", " ", "0.131329", ",", "0.0000673260206262147", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\[Sigma]Y", ",", "0.132740163641", ",", 
+       "\"\<\!\(\*SubscriptBox[\(\[Sigma]\), \(2\)]\)\>\""}], "}"}], ",", " ",
+      "0", ",", " ", "1", ",", ".001", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", "  ", 
+   "Delimiter", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\[Mu]Z", ",", "0.3108857520", ",", 
+       "\"\<\!\(\*SubscriptBox[\(ER\), \(3\)]\)\>\""}], " ", "}"}], ",", "0", 
+     ",", " ", "0.673260206262147", ",", "0.002348776", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "\[Sigma]Z", ",", "0.297389164239", ",", 
+       "\"\<\!\(\*SubscriptBox[\(\[Sigma]\), \(3\)]\)\>\""}], "}"}], ",", " ",
+      "0", ",", " ", ".7", ",", ".001", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", "Delimiter", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rXY", ",", 
+       RowBox[{
+        RowBox[{"-", "2.41013831248394"}], "*", 
+        RowBox[{"10", "^", 
+         RowBox[{"(", 
+          RowBox[{"-", "6"}], ")"}]}]}], ",", 
+       "\"\<\!\(\*SubscriptBox[\(\[Rho]\), \(12\)]\)\>\""}], "}"}], ",", " ", 
+     RowBox[{"-", "1"}], ",", " ", "1", ",", ".01", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rXZ", ",", 
+       RowBox[{
+        RowBox[{"-", "4.55517"}], "*", 
+        RowBox[{"10", "^", 
+         RowBox[{"(", 
+          RowBox[{"-", "05"}], ")"}]}]}], ",", 
+       "\"\<\!\(\*SubscriptBox[\(\[Rho]\), \(13\)]\)\>\""}], "}"}], ",", " ", 
+     RowBox[{"-", "1"}], ",", " ", "1", ",", ".01", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"rYZ", ",", 
+       RowBox[{
+        RowBox[{"-", "9.13271"}], "*", 
+        RowBox[{"10", "^", 
+         RowBox[{"(", 
+          RowBox[{"-", "08"}], ")"}]}]}], ",", 
+       "\"\<\!\(\*SubscriptBox[\(\[Rho]\), \(23\)]\)\>\""}], "}"}], ",", " ", 
+     RowBox[{"-", "1"}], ",", " ", "1", ",", ".01", ",", 
+     RowBox[{"Appearance", "\[Rule]", "\"\<Labeled\>\""}], ",", 
+     RowBox[{"ImageSize", "\[Rule]", "Tiny"}]}], "}"}], ",", " ", 
+   RowBox[{"TrackedSymbols", "\[RuleDelayed]", "Manipulate"}], ",", 
+   RowBox[{"AutorunSequencing", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"1", ",", "2", ",", "3", ",", "5"}], "}"}]}], ",", " ", 
+   RowBox[{
+   "FrameLabel", "\[Rule]", 
+    "\"\< This is Efficient Frontier Graph. The variables are \[Mu] which is \
+Expected Return or Mean Return, \n\[Sigma] repressents Standard Deviation and \
+\[Rho] for Correlation. The Blue Dots repressent the Return and Risk Level \n\
+for every combination of these 3 Stocks. Efficient Frontier is all the \
+Combinations where the Mean Returns Maximized\nfor a certain level of Risk, \
+or the Risk Level Minimized for certain level of Return\>\""}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.35696210375764*^9, {3.3962752308125*^9, 3.396275233203125*^9}, {
+   3.39627568925*^9, 3.396275703984375*^9}, {3.396277067171875*^9, 
+   3.39627707259375*^9}, {3.396284580640625*^9, 3.396284582421875*^9}, {
+   3.3962862789616656`*^9, 3.3962862990084124`*^9}, {3.7956317620761285`*^9, 
+   3.795631781044957*^9}, {3.795631835138671*^9, 3.7956318426855173`*^9}, {
+   3.7956319379357424`*^9, 3.795631942091975*^9}, {3.7956320534824424`*^9, 
+   3.7956320706230135`*^9}, {3.7956322206235056`*^9, 
+   3.7956322944675865`*^9}, {3.7956323717323847`*^9, 3.795632444607381*^9}, {
+   3.795632524045782*^9, 3.795632636279585*^9}, {3.795632683154378*^9, 
+   3.7956328021235065`*^9}, {3.7956328526546397`*^9, 
+   3.7956329607636557`*^9}, {3.795632993935503*^9, 3.795633189467687*^9}, {
+   3.795633275294919*^9, 3.7956333261617327`*^9}, {3.795633382255164*^9, 
+   3.7956334109743423`*^9}, {3.7956335731771913`*^9, 3.795633617802001*^9}, 
+   3.795633956989726*^9, {3.795634004473873*^9, 3.7956340448490353`*^9}, 
+   3.795634145799177*^9, 3.7956341806731443`*^9, {3.7956342806419034`*^9, 
+   3.795634308079615*^9}, {3.7956343383612204`*^9, 3.7956343662051973`*^9}, {
+   3.7956343973143616`*^9, 3.7956343982200184`*^9}, {3.7956344476888084`*^9, 
+   3.7956344499544725`*^9}, {3.795634481626295*^9, 3.7956345080018773`*^9}, {
+   3.795634539845837*^9, 3.7956346275796027`*^9}, {3.7956346779864593`*^9, 
+   3.795634694376278*^9}, {3.7956347476577125`*^9, 3.79563477836066*^9}, {
+   3.7956348097512865`*^9, 3.795634869829589*^9}, {3.7956349109703646`*^9, 
+   3.795634911063795*^9}, {3.7956349497043934`*^9, 3.7956352384075236`*^9}, 
+   3.7956352731575265`*^9},ExpressionUUID->"159d8f81-a0f6-4673-9ac0-\
+ad5237f63a66"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`rXY$$ = -2.4101383124839396`*^-6, \
+$CellContext`rXZ$$ = -0.000045551700000000006`, $CellContext`rYZ$$ = \
+-9.13271*^-8, $CellContext`\[Mu]X$$ = -0.00267, $CellContext`\[Mu]Y$$ = 
+    0.1073486703, $CellContext`\[Mu]Z$$ = 
+    0.310885752, $CellContext`\[Sigma]X$$ = 
+    0.40338251715, $CellContext`\[Sigma]Y$$ = 
+    0.132740163641, $CellContext`\[Sigma]Z$$ = 0.297389164239, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Mu]X$$], -0.00267, 
+       "\!\(\*SubscriptBox[\(ER\), \(1\)]\)"}, -0.00319125803957406, 0.3, 
+      0.000380855159680057}, {{
+       Hold[$CellContext`\[Sigma]X$$], 0.40338251715, 
+       "\!\(\*SubscriptBox[\(\[Sigma]\), \(1\)]\)"}, 0, 1, 0.001}, {{
+       Hold[$CellContext`\[Mu]Y$$], 0.1073486703, 
+       "\!\(\*SubscriptBox[\(ER\), \(2\)]\)"}, 0, 0.131329, 
+      0.0000673260206262147}, {{
+       Hold[$CellContext`\[Sigma]Y$$], 0.132740163641, 
+       "\!\(\*SubscriptBox[\(\[Sigma]\), \(2\)]\)"}, 0, 1, 0.001}, {{
+       Hold[$CellContext`\[Mu]Z$$], 0.310885752, 
+       "\!\(\*SubscriptBox[\(ER\), \(3\)]\)"}, 0, 0.673260206262147, 
+      0.002348776}, {{
+       Hold[$CellContext`\[Sigma]Z$$], 0.297389164239, 
+       "\!\(\*SubscriptBox[\(\[Sigma]\), \(3\)]\)"}, 0, 0.7, 0.001}, {{
+       Hold[$CellContext`rXY$$], -2.4101383124839396`*^-6, 
+       "\!\(\*SubscriptBox[\(\[Rho]\), \(12\)]\)"}, -1, 1, 0.01}, {{
+       Hold[$CellContext`rXZ$$], -0.000045551700000000006`, 
+       "\!\(\*SubscriptBox[\(\[Rho]\), \(13\)]\)"}, -1, 1, 0.01}, {{
+       Hold[$CellContext`rYZ$$], -9.13271*^-8, 
+       "\!\(\*SubscriptBox[\(\[Rho]\), \(23\)]\)"}, -1, 1, 0.01}}, 
+    Typeset`size$$ = {56., {2., 9.}}, Typeset`update$$ = 0, 
+    Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`\[Mu]X$30528$$ = 0, $CellContext`\[Sigma]X$30529$$ = 
+    0, $CellContext`\[Mu]Y$30530$$ = 0, $CellContext`\[Sigma]Y$30531$$ = 
+    0, $CellContext`\[Mu]Z$30532$$ = 0, $CellContext`\[Sigma]Z$30533$$ = 
+    0, $CellContext`rXY$30534$$ = 0, $CellContext`rXZ$30535$$ = 
+    0, $CellContext`rYZ$30536$$ = 0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`rXY$$ = -2.4101383124839396`*^-6, \
+$CellContext`rXZ$$ = -0.000045551700000000006`, $CellContext`rYZ$$ = \
+-9.13271*^-8, $CellContext`\[Mu]X$$ = -0.00267, $CellContext`\[Mu]Y$$ = 
+        0.1073486703, $CellContext`\[Mu]Z$$ = 
+        0.310885752, $CellContext`\[Sigma]X$$ = 
+        0.40338251715, $CellContext`\[Sigma]Y$$ = 
+        0.132740163641, $CellContext`\[Sigma]Z$$ = 0.297389164239}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Mu]X$$, $CellContext`\[Mu]X$30528$$, 0], 
+        Hold[$CellContext`\[Sigma]X$$, $CellContext`\[Sigma]X$30529$$, 0], 
+        Hold[$CellContext`\[Mu]Y$$, $CellContext`\[Mu]Y$30530$$, 0], 
+        Hold[$CellContext`\[Sigma]Y$$, $CellContext`\[Sigma]Y$30531$$, 0], 
+        Hold[$CellContext`\[Mu]Z$$, $CellContext`\[Mu]Z$30532$$, 0], 
+        Hold[$CellContext`\[Sigma]Z$$, $CellContext`\[Sigma]Z$30533$$, 0], 
+        Hold[$CellContext`rXY$$, $CellContext`rXY$30534$$, 0], 
+        Hold[$CellContext`rXZ$$, $CellContext`rXZ$30535$$, 0], 
+        Hold[$CellContext`rYZ$$, $CellContext`rYZ$30536$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, 
+      "Body" :> ($CellContext`weights = DeleteCases[
+          Flatten[
+           
+           Table[{$CellContext`a, $CellContext`b, 
+             1 - $CellContext`a - $CellContext`b}, {$CellContext`a, 0, 1, 
+             0.02}, {$CellContext`b, 0, 1, 0.02}], 1], {
+           Blank[], 
+           Blank[], 
+           Condition[
+            Pattern[$CellContext`x, 
+             Blank[]], $CellContext`x < 0]}, 
+          Button[
+          "Reset", {$CellContext`\[Mu]X$$ = -0.00267, \
+$CellContext`\[Sigma]X$$ = 0.40338251715, $CellContext`\[Mu]Y$$ = 
+            0.1073486703, $CellContext`\[Sigma]Y$$ = 
+            0.132740163641, $CellContext`\[Mu]Z$$ = 
+            0.310885752, $CellContext`\[Sigma]Z$$ = 
+            0.297389164239, $CellContext`rXY$$ = (-2.41013831248394) 
+             10^(-6), $CellContext`rXZ$$ = (-4.55517) 
+             10^(-5), $CellContext`rYZ$$ = (-9.13271) 
+             10^(-8)}]]; $CellContext`points = Transpose[{
+           Map[Sqrt, 
+            Table[
+             
+             With[{$CellContext`wX$ = 
+               Part[$CellContext`weights, $CellContext`i, 
+                 1], $CellContext`wY$ = 
+               Part[$CellContext`weights, $CellContext`i, 
+                 2], $CellContext`wZ$ = 
+               Part[$CellContext`weights, $CellContext`i, 
+                 3]}, $CellContext`wX$^2 $CellContext`\[Sigma]X$$^2 + \
+$CellContext`wY$^2 $CellContext`\[Sigma]Y$$^2 + $CellContext`wZ$^2 \
+$CellContext`\[Sigma]Z$$^2 + 
+              2 $CellContext`wX$ $CellContext`wY$ $CellContext`\[Sigma]X$$ \
+$CellContext`\[Sigma]Y$$ $CellContext`rXY$$ + 
+              2 $CellContext`wX$ $CellContext`wZ$ $CellContext`\[Sigma]X$$ \
+$CellContext`\[Sigma]Z$$ $CellContext`rXZ$$ + 
+              2 $CellContext`wY$ $CellContext`wZ$ $CellContext`\[Sigma]Y$$ \
+$CellContext`\[Sigma]Z$$ $CellContext`rYZ$$], {$CellContext`i, 
+              Length[$CellContext`weights]}]], 
+           Table[
+            
+            With[{$CellContext`wX$ = 
+              Part[$CellContext`weights, $CellContext`i, 1], $CellContext`wY$ = 
+              Part[$CellContext`weights, $CellContext`i, 2], $CellContext`wZ$ = 
+              Part[$CellContext`weights, $CellContext`i, 
+                3]}, $CellContext`wX$ $CellContext`\[Mu]X$$ + \
+$CellContext`wY$ $CellContext`\[Mu]Y$$ + $CellContext`wZ$ \
+$CellContext`\[Mu]Z$$], {$CellContext`i, 
+             Length[$CellContext`weights]}]}]; Show[
+         ListPlot[$CellContext`points, PlotStyle -> PointSize[0.01], 
+          PlotRange -> {{0, 0.2}, {0, 0.5}}, AxesLabel -> {
+            Style["Portfolio Risk Level", "Label"], 
+            Style["Portfolio Mean Return", "Label"]}, AspectRatio -> 1.5, 
+          Ticks -> {{0.05, 0.15}, {0.2, 0.4}}], 
+         ListLinePlot[
+          Tooltip[
+           FixedPoint[Delete[#, 
+             Position[
+              Prepend[
+               Differences[
+                Part[
+                 Transpose[#], 2]], 0], 
+              Condition[
+               Pattern[$CellContext`d, 
+                Blank[]], $CellContext`d < 0]]]& , 
+            Sort[$CellContext`points]], "efficient frontier"], 
+          PlotStyle -> {Thick, Yellow}], ImageSize -> 400]), 
+      "Specifications" :> {{{$CellContext`\[Mu]X$$, -0.00267, 
+          "\!\(\*SubscriptBox[\(ER\), \(1\)]\)"}, -0.00319125803957406, 0.3, 
+         0.000380855159680057, Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`\[Sigma]X$$, 0.40338251715, 
+          "\!\(\*SubscriptBox[\(\[Sigma]\), \(1\)]\)"}, 0, 1, 0.001, 
+         Appearance -> "Labeled", ImageSize -> Tiny}, 
+        Delimiter, {{$CellContext`\[Mu]Y$$, 0.1073486703, 
+          "\!\(\*SubscriptBox[\(ER\), \(2\)]\)"}, 0, 0.131329, 
+         0.0000673260206262147, Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`\[Sigma]Y$$, 0.132740163641, 
+          "\!\(\*SubscriptBox[\(\[Sigma]\), \(2\)]\)"}, 0, 1, 0.001, 
+         Appearance -> "Labeled", ImageSize -> Tiny}, 
+        Delimiter, {{$CellContext`\[Mu]Z$$, 0.310885752, 
+          "\!\(\*SubscriptBox[\(ER\), \(3\)]\)"}, 0, 0.673260206262147, 
+         0.002348776, Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`\[Sigma]Z$$, 0.297389164239, 
+          "\!\(\*SubscriptBox[\(\[Sigma]\), \(3\)]\)"}, 0, 0.7, 0.001, 
+         Appearance -> "Labeled", ImageSize -> Tiny}, 
+        Delimiter, {{$CellContext`rXY$$, -2.4101383124839396`*^-6, 
+          "\!\(\*SubscriptBox[\(\[Rho]\), \(12\)]\)"}, -1, 1, 0.01, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`rXZ$$, -0.000045551700000000006`, 
+          "\!\(\*SubscriptBox[\(\[Rho]\), \(13\)]\)"}, -1, 1, 0.01, 
+         Appearance -> "Labeled", ImageSize -> 
+         Tiny}, {{$CellContext`rYZ$$, -9.13271*^-8, 
+          "\!\(\*SubscriptBox[\(\[Rho]\), \(23\)]\)"}, -1, 1, 0.01, 
+         Appearance -> "Labeled", ImageSize -> Tiny}}, 
+      "Options" :> {
+       TrackedSymbols :> Manipulate, AutorunSequencing -> {1, 2, 3, 5}, 
+        FrameLabel -> 
+        " This is Efficient Frontier Graph. The variables are \[Mu] which is \
+Expected Return or Mean Return, \n\[Sigma] repressents Standard Deviation and \
+\[Rho] for Correlation. The Blue Dots repressent the Return and Risk Level \n\
+for every combination of these 3 Stocks. Efficient Frontier is all the \
+Combinations where the Mean Returns Maximized\nfor a certain level of Risk, \
+or the Risk Level Minimized for certain level of Return"}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{620., {175., 181.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.795634836876892*^9, 3.795634850330397*^9}, {
+   3.7956349004859715`*^9, 3.7956349150325284`*^9}, 3.795634980282519*^9, {
+   3.7956351609707565`*^9, 3.795635212438768*^9}},
+ CellLabel->"Out[36]=",ExpressionUUID->"ce1b55b7-0221-4b90-8481-d84b2ee3fb10"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DeleteCases","level",
+   "\"Level specification \\!\\(\\*ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \
+RuleDelayed[ButtonFunction, List[Set[FE`\\\\[Mu]X$$481, -0.00267`], Set[FE`\\\
+\\[Sigma]X$$481, 0.40338251715`], Set[FE`\\\\[Mu]Y$$481, 0.1073486703`], \
+Set[FE`\\\\[Sigma]Y$$481, 0.132740163641`], Set[FE`\\\\[Mu]Z$$481, \
+0.310885752`], Set[FE`\\\\[Sigma]Z$$481, 0.297389164239`], Set[FE`rXY$$481, \
+Times[-2.41013831248394`, Power[10, -6]]], Set[FE`rXZ$$481, Times[-4.55517`, \
+Power[10, -5]]], Set[FE`rYZ$$481, Times[-9.13271`, Power[10, -8]]]]], \
+Rule[Appearance, Automatic], Rule[Evaluator, Automatic], Rule[Method, \
+\\\"Preemptive\\\"]]\\) is not of the form n, {n}, or {m, n}.\"",2,37,30,
+   19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635212548149*^9},
+ CellLabel->"",ExpressionUUID->"7a6ebc8d-3d8a-4201-b57f-2e96165969fd"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DeleteCases","level",
+   "\"Level specification \\!\\(\\*ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \
+RuleDelayed[ButtonFunction, List[Set[FE`\\\\[Mu]X$$481, -0.00267`], Set[FE`\\\
+\\[Sigma]X$$481, 0.40338251715`], Set[FE`\\\\[Mu]Y$$481, 0.1073486703`], \
+Set[FE`\\\\[Sigma]Y$$481, 0.132740163641`], Set[FE`\\\\[Mu]Z$$481, \
+0.310885752`], Set[FE`\\\\[Sigma]Z$$481, 0.297389164239`], Set[FE`rXY$$481, \
+Times[-2.41013831248394`, Power[10, -6]]], Set[FE`rXZ$$481, Times[-4.55517`, \
+Power[10, -5]]], Set[FE`rYZ$$481, Times[-9.13271`, Power[10, -8]]]]], \
+Rule[Appearance, Automatic], Rule[Evaluator, Automatic], Rule[Method, \
+\\\"Preemptive\\\"]]\\) is not of the form n, {n}, or {m, n}.\"",2,37,31,
+   19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635212595023*^9},
+ CellLabel->"",ExpressionUUID->"2787d374-8f72-4e11-979b-0f5dff2d2ab2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part","partw",
+   "\"Part \\!\\(\\*RowBox[{\\\"3\\\"}]\\) of \
+\\!\\(\\*ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", RuleDelayed[ButtonFunction, \
+List[Set[FE`\\\\[Mu]X$$481, -0.00267`], Set[FE`\\\\[Sigma]X$$481, \
+0.40338251715`], Set[FE`\\\\[Mu]Y$$481, 0.1073486703`], \
+Set[FE`\\\\[Sigma]Y$$481, 0.132740163641`], Set[FE`\\\\[Mu]Z$$481, \
+0.310885752`], Set[FE`\\\\[Sigma]Z$$481, 0.297389164239`], Set[FE`rXY$$481, \
+Times[-2.41013831248394`, Power[10, -6]]], Set[FE`rXZ$$481, Times[-4.55517`, \
+Power[10, -5]]], Set[FE`rYZ$$481, Times[-9.13271`, Power[10, -8]]]]], \
+Rule[Appearance, Automatic], Rule[Evaluator, Automatic], Rule[Method, \
+\\\"Preemptive\\\"]]\\) does not exist.\"",2,37,32,19706502075823856431,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352126262836`*^9},
+ CellLabel->"",ExpressionUUID->"a802f448-6533-47ab-a6a3-74d0db2d5f19"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DeleteCases","level",
+   "\"Level specification \\!\\(\\*ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \
+RuleDelayed[ButtonFunction, List[Set[FE`\\\\[Mu]X$$481, -0.00267`], Set[FE`\\\
+\\[Sigma]X$$481, 0.40338251715`], Set[FE`\\\\[Mu]Y$$481, 0.1073486703`], \
+Set[FE`\\\\[Sigma]Y$$481, 0.132740163641`], Set[FE`\\\\[Mu]Z$$481, \
+0.310885752`], Set[FE`\\\\[Sigma]Z$$481, 0.297389164239`], Set[FE`rXY$$481, \
+Times[-2.41013831248394`, Power[10, -6]]], Set[FE`rXZ$$481, Times[-4.55517`, \
+Power[10, -5]]], Set[FE`rYZ$$481, Times[-9.13271`, Power[10, -8]]]]], \
+Rule[Appearance, Automatic], Rule[Evaluator, Automatic], Rule[Method, \
+\\\"Preemptive\\\"]]\\) is not of the form n, {n}, or {m, n}.\"",2,37,33,
+   19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635212657525*^9},
+ CellLabel->"",ExpressionUUID->"10315737-2712-4e16-a053-093b1adcc870"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"DeleteCases\\\", \\\"::\
+\\\", \\\"level\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,37,34,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635212735652*^9},
+ CellLabel->"",ExpressionUUID->"8225b332-b9a7-4739-baeb-e578ba393406"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part","partw",
+   "\"Part \\!\\(\\*RowBox[{\\\"3\\\"}]\\) of \
+\\!\\(\\*ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", RuleDelayed[ButtonFunction, \
+List[Set[FE`\\\\[Mu]X$$481, -0.00267`], Set[FE`\\\\[Sigma]X$$481, \
+0.40338251715`], Set[FE`\\\\[Mu]Y$$481, 0.1073486703`], \
+Set[FE`\\\\[Sigma]Y$$481, 0.132740163641`], Set[FE`\\\\[Mu]Z$$481, \
+0.310885752`], Set[FE`\\\\[Sigma]Z$$481, 0.297389164239`], Set[FE`rXY$$481, \
+Times[-2.41013831248394`, Power[10, -6]]], Set[FE`rXZ$$481, Times[-4.55517`, \
+Power[10, -5]]], Set[FE`rYZ$$481, Times[-9.13271`, Power[10, -8]]]]], \
+Rule[Appearance, Automatic], Rule[Evaluator, Automatic], Rule[Method, \
+\\\"Preemptive\\\"]]\\) does not exist.\"",2,37,35,19706502075823856431,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635212813777*^9},
+ CellLabel->"",ExpressionUUID->"9ee9f70c-f04e-4e48-94b2-f31aabbe3b34"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Part","partw",
+   "\"Part \\!\\(\\*RowBox[{\\\"3\\\"}]\\) of \
+\\!\\(\\*ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", RuleDelayed[ButtonFunction, \
+List[Set[FE`\\\\[Mu]X$$481, -0.00267`], Set[FE`\\\\[Sigma]X$$481, \
+0.40338251715`], Set[FE`\\\\[Mu]Y$$481, 0.1073486703`], \
+Set[FE`\\\\[Sigma]Y$$481, 0.132740163641`], Set[FE`\\\\[Mu]Z$$481, \
+0.310885752`], Set[FE`\\\\[Sigma]Z$$481, 0.297389164239`], Set[FE`rXY$$481, \
+Times[-2.41013831248394`, Power[10, -6]]], Set[FE`rXZ$$481, Times[-4.55517`, \
+Power[10, -5]]], Set[FE`rYZ$$481, Times[-9.13271`, Power[10, -8]]]]], \
+Rule[Appearance, Automatic], Rule[Evaluator, Automatic], Rule[Method, \
+\\\"Preemptive\\\"]]\\) does not exist.\"",2,37,36,19706502075823856431,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352128762727`*^9},
+ CellLabel->"",ExpressionUUID->"3713b0cd-bda0-4bc7-a8b8-d4dfd96dfab8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Part\\\", \\\"::\\\", \
+\\\"partw\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,37,37,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352129387755`*^9},
+ CellLabel->"",ExpressionUUID->"22bef9ff-d1a1-4b87-aac3-1ee876585fc1"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Rule","rhs",
+   "\"Pattern \\!\\(\\*RowBox[{\\\"x_\\\"}]\\) appears on the right-hand side \
+of rule \\!\\(\\*RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \
+\\\"[\\\", RowBox[{\\\"\\\\\\\"WrappedValues\\\\\\\"\\\", \\\",\\\", RowBox[{\
+\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.012188210642252562`\\\", \\\",\\\", \
+\\\"0.5110141866512256`\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.014582403486000001`\\\", \\\",\\\", \
+\\\"0.400982018814`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"20\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\
+\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}]}]], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{\\\"1.2561086899357557`*^-7\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{RowBox[{\\\"0.0028670735935198543`\\\", \
+\\\"\[VeryThinSpace]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{RowBox[{\\\"0.00020304768204490933`\\\", \\\"\[VeryThinSpace]\
+\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", SqrtBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}]], \\\",\\\", SqrtBox[RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"1.0235018461779977`*^-13\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"3.6560647327545563`*^-11\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"1.4696165427649652`*^-16\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"7\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}], \\\",\\\", \\\"Charting`Private`Tag$30737\\\"}], \\\"]\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]}]\\).\"",2,37,38,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352140793934`*^9},
+ CellLabel->"",ExpressionUUID->"af16eab5-12c2-443a-94d6-c2603835f46c"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Rule","rhs",
+   "\"Pattern \\!\\(\\*RowBox[{\\\"x_\\\"}]\\) appears on the right-hand side \
+of rule \\!\\(\\*RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \
+\\\"[\\\", RowBox[{\\\"\\\\\\\"WrappedValues\\\\\\\"\\\", \\\",\\\", RowBox[{\
+\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.012188210642252562`\\\", \\\",\\\", \
+\\\"0.5110141866512256`\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.014582403486000001`\\\", \\\",\\\", \
+\\\"0.400982018814`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"20\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\
+\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}]}]], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{\\\"1.2561086899357557`*^-7\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{RowBox[{\\\"0.0028670735935198543`\\\", \
+\\\"\[VeryThinSpace]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{RowBox[{\\\"0.00020304768204490933`\\\", \\\"\[VeryThinSpace]\
+\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", SqrtBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}]], \\\",\\\", SqrtBox[RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"1.0235018461779977`*^-13\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"3.6560647327545563`*^-11\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"1.4696165427649652`*^-16\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"7\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}], \\\",\\\", \\\"Charting`Private`Tag$30737\\\"}], \\\"]\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]}]\\).\"",2,37,39,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352145796204`*^9},
+ CellLabel->"",ExpressionUUID->"213864a9-37ca-47b0-8c7a-42232d4fea00"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Rule","rhs",
+   "\"Pattern \\!\\(\\*RowBox[{\\\"x_\\\"}]\\) appears on the right-hand side \
+of rule \\!\\(\\*RowBox[{RowBox[{\\\"System`ListPlotsDump`modelData\\\", \
+\\\"[\\\", RowBox[{\\\"\\\\\\\"WrappedValues\\\\\\\"\\\", \\\",\\\", RowBox[{\
+\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.012188210642252562`\\\", \\\",\\\", \
+\\\"0.5110141866512256`\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.014582403486000001`\\\", \\\",\\\", \
+\\\"0.400982018814`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"20\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\
+\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\
+\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}]}]], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\
+\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{\\\"1.2561086899357557`*^-7\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{RowBox[{\\\"0.0028670735935198543`\\\", \
+\\\"\[VeryThinSpace]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{RowBox[{\\\"0.00020304768204490933`\\\", \\\"\[VeryThinSpace]\
+\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", SqrtBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}]], \\\",\\\", SqrtBox[RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"1.0235018461779977`*^-13\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"3.6560647327545563`*^-11\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]], \\\",\\\", \
+SqrtBox[RowBox[{\\\"1.4696165427649652`*^-16\\\", \\\"+\\\", \
+RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"+\\\", RowBox[{\\\"Times\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"7\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}], \\\",\\\", \\\"Charting`Private`Tag$30737\\\"}], \\\"]\\\"}], \\\
+\"\[Rule]\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}]}]\\).\"",2,37,40,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352151731453`*^9},
+ CellLabel->"",ExpressionUUID->"f82ba11f-3447-4fef-a6cb-c00320009edc"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Rule\\\", \\\"::\\\", \
+\\\"rhs\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,37,41,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635215314266*^9},
+ CellLabel->"",ExpressionUUID->"48585d6b-7698-4783-89f3-bf460c54e869"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"0.00028662094970100004`\\\"}], \\\"-\\\
+\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \
+\\\"+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2551\\\", \
+\\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"_\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \
+RowBox[{\\\"Condition\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", RuleDelayed[ButtonFunction, \
+List[Skeleton[9]]], Rule[Appearance, Automatic], Rule[Evaluator, Automatic], \
+Rule[Method, \\\"Preemptive\\\"]]}], \\\"]\\\"}], \
+\\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"0.04330257683831945`\\\", \\\"\[VeryThinSpace]\\\"}], \
+\\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", RowBox[{\\\"0.310885752`\\\", \
+\\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\
+\"}]}]}], \\\",\\\", RowBox[{RowBox[{\\\"0.011523737015178103`\\\", \\\"\
+\[VeryThinSpace]\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", RowBox[{\\\"0.310885752`\\\", \
+\\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\
+\"}]}]}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"-\\\", \
+\\\"2.5872514308423684`*^-7\\\"}], \\\"-\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\
+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{RowBox[{RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"11\\\", \\\"\[RightSkeleton]\\\"}], \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", RowBox[{RowBox[{\
+\\\"-\\\", \\\"4.889914424904511`*^-6\\\"}], \\\"-\\\", \
+RowBox[{\\\"0.00267`\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\
+\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]}], \\\",\\\", RowBox[{RowBox[{\\\"-\\\
+\", \\\"9.80384274735513`*^-9\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \
+\\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]}]}], \\\"}\\\"}], \\\"-\\\", RowBox[{\
+\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]\\) cannot be \
+combined.\"",2,37,42,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635215641897*^9},
+ CellLabel->"",ExpressionUUID->"4020f4bb-c009-4617-8ea7-33b988d4ac55"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"0.00028662094970100004`\\\"}], \\\"-\\\
+\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \
+\\\"+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2551\\\", \
+\\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"_\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \
+RowBox[{\\\"Condition\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", RuleDelayed[ButtonFunction, \
+List[Skeleton[9]]], Rule[Appearance, Automatic], Rule[Evaluator, Automatic], \
+Rule[Method, \\\"Preemptive\\\"]]}], \\\"]\\\"}], \
+\\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"0.04330257683831945`\\\", \\\"\[VeryThinSpace]\\\"}], \
+\\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", RowBox[{\\\"0.310885752`\\\", \
+\\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\
+\"}]}]}], \\\",\\\", RowBox[{RowBox[{\\\"0.011523737015178103`\\\", \\\"\
+\[VeryThinSpace]\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", RowBox[{\\\"0.310885752`\\\", \
+\\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\
+\"}]}]}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"-\\\", \
+\\\"2.5872514308423684`*^-7\\\"}], \\\"-\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\
+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{RowBox[{RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"11\\\", \\\"\[RightSkeleton]\\\"}], \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", RowBox[{RowBox[{\
+\\\"-\\\", \\\"4.889914424904511`*^-6\\\"}], \\\"-\\\", \
+RowBox[{\\\"0.00267`\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\
+\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]}], \\\",\\\", RowBox[{RowBox[{\\\"-\\\
+\", \\\"9.80384274735513`*^-9\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \
+\\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]}]}], \\\"}\\\"}], \\\"-\\\", RowBox[{\
+\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]\\) cannot be \
+combined.\"",2,37,43,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352159704843`*^9},
+ CellLabel->"",ExpressionUUID->"da8d88e2-2366-4a5f-8f57-afcc3ac2335c"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Thread","tdlen",
+   "\"Objects of unequal length in \\!\\(\\*RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"0.00028662094970100004`\\\"}], \\\"-\\\
+\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \
+\\\"+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\
+\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2551\\\", \
+\\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"_\\\", \\\",\\\", \\\"_\\\", \\\",\\\", \
+RowBox[{\\\"Condition\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+ButtonBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", RuleDelayed[ButtonFunction, \
+List[Skeleton[9]]], Rule[Appearance, Automatic], Rule[Evaluator, Automatic], \
+Rule[Method, \\\"Preemptive\\\"]]}], \\\"]\\\"}], \
+\\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"0.04330257683831945`\\\", \\\"\[VeryThinSpace]\\\"}], \
+\\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", RowBox[{\\\"0.310885752`\\\", \
+\\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\
+\"}]}]}], \\\",\\\", RowBox[{RowBox[{\\\"0.011523737015178103`\\\", \\\"\
+\[VeryThinSpace]\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", RowBox[{\\\"0.310885752`\\\", \
+\\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\
+\"}]}]}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"-\\\", \
+\\\"2.5872514308423684`*^-7\\\"}], \\\"-\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"+\
+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{RowBox[{RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"11\\\", \\\"\[RightSkeleton]\\\"}], \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}], \\\"\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", RowBox[{RowBox[{\
+\\\"-\\\", \\\"4.889914424904511`*^-6\\\"}], \\\"-\\\", \
+RowBox[{\\\"0.00267`\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\
+\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]}], \\\",\\\", RowBox[{RowBox[{\\\"-\\\
+\", \\\"9.80384274735513`*^-9\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \
+\\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]}]}], \\\"}\\\"}], \\\"-\\\", RowBox[{\
+\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}]}]\\) cannot be \
+combined.\"",2,37,44,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635216313772*^9},
+ CellLabel->"",ExpressionUUID->"64f93f53-5033-4720-bb45-9685e956341d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Thread\\\", \\\"::\\\", \
+\\\"tdlen\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,37,45,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635216580433*^9},
+ CellLabel->"",ExpressionUUID->"9c2c44cf-48e0-422b-8229-f872415108ff"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Delete","partw",
+   "\"Part \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"9\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"9\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"2\\\"}], \\\"}\\\"}]\\) of \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\
+\"{\\\", RowBox[{SqrtBox[RowBox[{RowBox[{\\\"0.18033714808370196`\\\", \\\" \
+\\\", SuperscriptBox[\\\"_\\\", \\\"2\\\"]}], \\\"-\\\", \
+RowBox[{\\\"0.000010936119049335187`\\\", \\\" \\\", \\\"_\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"x_\\\", \\\"/;\\\", RowBox[{\\\"x\\\", \\\"<\\\
+\", \\\"0\\\"}]}], \\\")\\\"}]}], \\\"+\\\", RowBox[{\\\"0.08844031500677094`\
+\\\", \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"Pattern\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"/;\\\", \
+RowBox[{\\\"Less\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]}]], \
+\\\",\\\", RowBox[{RowBox[{\\\"0.1046786703`\\\", \\\" \\\", \\\"_\\\"}], \
+\\\"+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"(\\\", \
+RowBox[{\\\"x_\\\", \\\"/;\\\", RowBox[{\\\"x\\\", \\\"<\\\", \\\"0\\\"}]}], \
+\\\")\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \
+\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{\\\"1.2561086899357557`*^-7\\\", \\\"+\\\", \
+RowBox[{\\\"6.891323601381173`*^-10\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\
+\\\"}], \\\"+\\\", RowBox[{\\\"0.16271745514227004`\\\", \\\" \\\", \
+SuperscriptBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\"2\\\"]}], \\\"+\\\", \
+RowBox[{\\\"1.925167020994963`*^-11\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"0.000010928908685960674`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"0.08844031500677094`\\\", \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"2\\\"]}]}]], \
+\\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"7\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\",\\\", SqrtBox[RowBox[{\\\"1.4696165427649652`*^-16\\\", \\\"+\\\", \
+RowBox[{\\\"2.3571707853022417`*^-14\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.16271745514227004`\\\", \\\" \\\", \
+SuperscriptBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\"2\\\"]}], \\\"+\\\", \
+RowBox[{\\\"6.585015769404835`*^-16\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"0.000010928908685960674`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"0.08844031500677094`\\\", \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"2\\\"]}]}]]}], \\\
+\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{\\\"-\\\", \
+\\\"0.00028662094970100004`\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \
+\\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{RowBox[{\\\"DeleteCases\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2601\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", ButtonBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
+RuleDelayed[ButtonFunction, List[]], Rule[Evaluator, None], Rule[Appearance, \
+Automatic], Rule[Method, \\\"Preemptive\\\"]]}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"8\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}]\\) does not exist.\"",2,37,46,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352168765593`*^9},
+ CellLabel->"",ExpressionUUID->"487699c1-867e-43a3-b0ce-e86966b2719d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Delete","partw",
+   "\"Part \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"9\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"9\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"2\\\"}], \\\"}\\\"}]\\) of \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\
+\"{\\\", RowBox[{SqrtBox[RowBox[{RowBox[{\\\"0.18033714808370196`\\\", \\\" \
+\\\", SuperscriptBox[\\\"_\\\", \\\"2\\\"]}], \\\"-\\\", \
+RowBox[{\\\"0.000010936119049335187`\\\", \\\" \\\", \\\"_\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"x_\\\", \\\"/;\\\", RowBox[{\\\"x\\\", \\\"<\\\
+\", \\\"0\\\"}]}], \\\")\\\"}]}], \\\"+\\\", RowBox[{\\\"0.08844031500677094`\
+\\\", \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"Pattern\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"/;\\\", \
+RowBox[{\\\"Less\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]}]], \
+\\\",\\\", RowBox[{RowBox[{\\\"0.1046786703`\\\", \\\" \\\", \\\"_\\\"}], \
+\\\"+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"(\\\", \
+RowBox[{\\\"x_\\\", \\\"/;\\\", RowBox[{\\\"x\\\", \\\"<\\\", \\\"0\\\"}]}], \
+\\\")\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \
+\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{\\\"1.2561086899357557`*^-7\\\", \\\"+\\\", \
+RowBox[{\\\"6.891323601381173`*^-10\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\
+\\\"}], \\\"+\\\", RowBox[{\\\"0.16271745514227004`\\\", \\\" \\\", \
+SuperscriptBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\"2\\\"]}], \\\"+\\\", \
+RowBox[{\\\"1.925167020994963`*^-11\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"0.000010928908685960674`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"0.08844031500677094`\\\", \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"2\\\"]}]}]], \
+\\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"7\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\",\\\", SqrtBox[RowBox[{\\\"1.4696165427649652`*^-16\\\", \\\"+\\\", \
+RowBox[{\\\"2.3571707853022417`*^-14\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.16271745514227004`\\\", \\\" \\\", \
+SuperscriptBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\"2\\\"]}], \\\"+\\\", \
+RowBox[{\\\"6.585015769404835`*^-16\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"0.000010928908685960674`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"0.08844031500677094`\\\", \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"2\\\"]}]}]]}], \\\
+\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{\\\"-\\\", \
+\\\"0.00028662094970100004`\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \
+\\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{RowBox[{\\\"DeleteCases\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2601\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", ButtonBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
+RuleDelayed[ButtonFunction, List[]], Rule[Evaluator, None], Rule[Appearance, \
+Automatic], Rule[Method, \\\"Preemptive\\\"]]}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"8\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}]\\) does not exist.\"",2,37,47,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352171731563`*^9},
+ CellLabel->"",ExpressionUUID->"87f7f5fe-d28e-43d3-99f4-682b60b119e9"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Differences","listrp",
+   "\"List or SparseArray or StructuredArray expected at position \
+\\!\\(\\*RowBox[{\\\"1\\\"}]\\) in \\!\\(\\*RowBox[{\\\"Differences\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"Transpose\\\", \\\"[\\\", RowBox[{\\\"Delete\\\
+\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{\\\"Plus\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]], \\\",\\\", RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \\\"}\\\"}], \
+\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0.`\\\", \
+\\\",\\\", \\\"0.012188210642252562`\\\", \\\",\\\", \
+\\\"0.5110141866512256`\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.014582403486000001`\\\", \\\",\\\", \
+\\\"0.400982018814`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", \
+RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
+\"{\\\", RowBox[{RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\
+\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\
+\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", \
+RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\
+\",\\\", \\\"2\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"1\\\"}], \
+\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\
+\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"3\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\
+\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \
+\\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"102\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"152\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\
+\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"31\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \
+\\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"456\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"457\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\
+\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"458\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"459\\\", \
+\\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\
+\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\
+\"502\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"503\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"504\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\
+\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"505\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"506\\\", \
+\\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"11741\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}], \
+\\\"]\\\"}], \\\"\[LeftDoubleBracket]\\\", \\\"2\\\", \\\"\
+\[RightDoubleBracket]\\\"}], \\\"]\\\"}]\\).\"",2,37,48,19706502075823856431,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352175793962`*^9},
+ CellLabel->"",ExpressionUUID->"621217d9-786a-4b83-b397-240357ecbcca"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Differences","listrp",
+   "\"List or SparseArray or StructuredArray expected at position \
+\\!\\(\\*RowBox[{\\\"1\\\"}]\\) in \\!\\(\\*RowBox[{\\\"Differences\\\", \
+\\\"[\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"Transpose\\\", \
+\\\"[\\\", RowBox[{\\\"Delete\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{SqrtBox[RowBox[{\\\"Plus\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]], \\\",\\\", RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \\\"}\\\"}], \
+\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0.`\\\", \
+\\\",\\\", \\\"0.012188210642252562`\\\", \\\",\\\", \
+\\\"0.5110141866512256`\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.014582403486000001`\\\", \\\",\\\", \
+\\\"0.400982018814`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", \
+RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
+\"{\\\", RowBox[{RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\
+\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\
+\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", \
+RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\
+\",\\\", \\\"2\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"1\\\"}], \
+\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\
+\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"3\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\
+\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \
+\\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"102\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"33\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"457\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\
+\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"458\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"459\\\", \
+\\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\
+\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\
+\"502\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"503\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"504\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\
+\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"505\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"506\\\", \
+\\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"11741\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}], \
+\\\"]\\\"}], \\\"\[LeftDoubleBracket]\\\", \\\"2\\\", \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"]\\\"}]\\).\"",2,37,49,
+   19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635217970604*^9},
+ CellLabel->"",ExpressionUUID->"b090ce43-f168-41b9-927f-ef0880775afd"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Delete","partw",
+   "\"Part \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"9\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"9\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"2\\\"}], \\\"}\\\"}]\\) of \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\
+\"{\\\", RowBox[{SqrtBox[RowBox[{RowBox[{\\\"0.18033714808370196`\\\", \\\" \
+\\\", SuperscriptBox[\\\"_\\\", \\\"2\\\"]}], \\\"-\\\", \
+RowBox[{\\\"0.000010936119049335187`\\\", \\\" \\\", \\\"_\\\", \\\" \\\", \
+RowBox[{\\\"(\\\", RowBox[{\\\"x_\\\", \\\"/;\\\", RowBox[{\\\"x\\\", \\\"<\\\
+\", \\\"0\\\"}]}], \\\")\\\"}]}], \\\"+\\\", RowBox[{\\\"0.08844031500677094`\
+\\\", \\\" \\\", SuperscriptBox[RowBox[{\\\"(\\\", \
+RowBox[{RowBox[{\\\"Pattern\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"/;\\\", \
+RowBox[{\\\"Less\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\")\\\"}], \\\"2\\\"]}]}]], \
+\\\",\\\", RowBox[{RowBox[{\\\"0.1046786703`\\\", \\\" \\\", \\\"_\\\"}], \
+\\\"+\\\", RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{\\\"(\\\", \
+RowBox[{\\\"x_\\\", \\\"/;\\\", RowBox[{\\\"x\\\", \\\"<\\\", \\\"0\\\"}]}], \
+\\\")\\\"}]}]}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \
+\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{SqrtBox[RowBox[{\\\"1.2561086899357557`*^-7\\\", \\\"+\\\", \
+RowBox[{\\\"6.891323601381173`*^-10\\\", \\\" \\\", \\\"\\\\\\\"Reset\\\\\\\"\
+\\\"}], \\\"+\\\", RowBox[{\\\"0.16271745514227004`\\\", \\\" \\\", \
+SuperscriptBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\"2\\\"]}], \\\"+\\\", \
+RowBox[{\\\"1.925167020994963`*^-11\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"0.000010928908685960674`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"0.08844031500677094`\\\", \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"2\\\"]}]}]], \
+\\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"7\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\",\\\", SqrtBox[RowBox[{\\\"1.4696165427649652`*^-16\\\", \\\"+\\\", \
+RowBox[{\\\"2.3571707853022417`*^-14\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.16271745514227004`\\\", \\\" \\\", \
+SuperscriptBox[\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\"2\\\"]}], \\\"+\\\", \
+RowBox[{\\\"6.585015769404835`*^-16\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"-\\\", \
+RowBox[{\\\"0.000010928908685960674`\\\", \\\" \\\", \
+\\\"\\\\\\\"Reset\\\\\\\"\\\", \\\" \\\", \
+RowBox[{RowBox[{\\\"DeleteCases\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"+\\\", \
+RowBox[{\\\"0.08844031500677094`\\\", \\\" \\\", \
+SuperscriptBox[RowBox[{\\\"Part\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"2\\\"]}]}]]}], \\\
+\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{\\\"-\\\", \
+\\\"0.00028662094970100004`\\\"}], \\\"-\\\", RowBox[{\\\"0.00267`\\\", \\\" \
+\\\", \\\"\\\\\\\"Reset\\\\\\\"\\\"}], \\\"+\\\", \
+RowBox[{\\\"0.310885752`\\\", \\\" \\\", RowBox[{RowBox[{\\\"DeleteCases\\\", \
+\\\"[\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2601\\\", \\\"\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"}\\\"}], \\\",\\\", ButtonBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \
+RuleDelayed[ButtonFunction, List[]], Rule[Evaluator, None], Rule[Appearance, \
+Automatic], Rule[Method, \\\"Preemptive\\\"]]}], \\\"]\\\"}], \\\"\
+\[LeftDoubleBracket]\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"3\\\"}], \\\"\
+\[RightDoubleBracket]\\\"}]}]}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"8\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}]\\) does not exist.\"",2,37,50,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635218657524*^9},
+ CellLabel->"",ExpressionUUID->"6308159d-b7b3-44ed-a89b-2a12f572fa3c"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Delete\\\", \\\"::\\\", \
+\\\"partw\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,37,51,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635218704402*^9},
+ CellLabel->"",ExpressionUUID->"159e67ed-160b-4dbc-b44c-b4b5e18e6866"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Differences","listrp",
+   "\"List or SparseArray or StructuredArray expected at position \
+\\!\\(\\*RowBox[{\\\"1\\\"}]\\) in \\!\\(\\*RowBox[{\\\"Differences\\\", \
+\\\"[\\\", RowBox[{\\\"0\\\", \\\",\\\", RowBox[{RowBox[{\\\"Transpose\\\", \
+\\\"[\\\", RowBox[{\\\"Delete\\\", \\\"[\\\", RowBox[{RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{SqrtBox[RowBox[{\\\"Plus\\\", \\\"[\\\", \
+RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\
+\\\"}]], \\\",\\\", RowBox[{RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"+\\\", RowBox[{\\\"Times\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}]}], \\\"}\\\"}], \
+\\\",\\\", RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"0.`\\\", \
+\\\",\\\", \\\"0.012188210642252562`\\\", \\\",\\\", \
+\\\"0.5110141866512256`\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.014582403486000001`\\\", \\\",\\\", \
+\\\"0.400982018814`\\\"}], \\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"{\\\", RowBox[{RowBox[{\\\"Power\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"2\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", \
+RowBox[{\\\"Power\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Power\\\", \\\
+\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"2\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\
+\"{\\\", RowBox[{RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\
+\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\
+\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\
+\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", \
+RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\",\\\", RowBox[{\\\"Plus\\\", \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"3\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}]}], \\\"}\\\"}]}], \
+\\\"}\\\"}]}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\
+\",\\\", \\\"2\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"1\\\"}], \
+\\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\
+\", RowBox[{\\\"{\\\", RowBox[{\\\"2\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"3\\\", \\\",\\\", \\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\
+\"1\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \
+\\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"102\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"33\\\", \\\"\[RightSkeleton]\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"457\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\
+\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"458\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"459\\\", \
+\\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\
+\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\
+\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\
+\"502\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", \
+RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"503\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", \
+RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"504\\\", \\\",\\\", \\\"3\\\"}], \\\"}\\\
+\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\",\\\", \\\"1\\\", \
+\\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\"2\\\", \\\",\\\", \
+\\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"505\\\", \\\",\\\", \
+\\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"{\\\", RowBox[{\\\"3\\\", \\\
+\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"3\\\", \\\",\\\", \\\
+\"2\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"1\\\", \\\",\\\", \\\"506\\\", \
+\\\",\\\", \\\"3\\\"}], \\\"}\\\"}], \\\",\\\", RowBox[{\\\"\[LeftSkeleton]\\\
+\", \\\"11741\\\", \\\"\[RightSkeleton]\\\"}]}], \\\"}\\\"}]}], \\\"]\\\"}], \
+\\\"]\\\"}], \\\"\[LeftDoubleBracket]\\\", \\\"2\\\", \\\"\
+\[RightDoubleBracket]\\\"}]}], \\\"]\\\"}]\\).\"",2,37,52,
+   19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.795635219096017*^9},
+ CellLabel->"",ExpressionUUID->"4b25c09a-afe7-4f4a-8d75-055532d4067d"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Differences\\\", \\\"::\
+\\\", \\\"listrp\\\"}], \\\"MessageName\\\"]\\) will be suppressed during \
+this calculation.\"",2,37,53,19706502075823856431,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7956352191575236`*^9},
+ CellLabel->"",ExpressionUUID->"8f64f4e5-52cb-4dea-94c7-c731be48416f"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[AliasDelimiter]", 
+  RowBox[{"\[AliasDelimiter]", 
+   RowBox[{"\[AliasDelimiter]", 
+    RowBox[{"\[AliasDelimiter]", 
+     RowBox[{"\[AliasDelimiter]", 
+      RowBox[{"\[AliasDelimiter]", 
+       RowBox[{"\[AliasDelimiter]", 
+        RowBox[{"\[AliasDelimiter]", 
+         RowBox[{
+         "\[AliasDelimiter]", "\[AliasDelimiter]"}]}]}]}]}]}]}]}]}]], "Input",
+ CellChangeTimes->{{3.795631881435524*^9, 
+  3.795631886638624*^9}},ExpressionUUID->"a8dd7cd7-134d-40de-84f2-\
+1fb1bab2b155"],
+
+Cell[BoxData[{
+ RowBox[{"\[Rho]", " ", "=", " ", 
+  "\[Sigma]\[Upsilon]\[Sigma]\[Chi]\[CurlyEpsilon]\[Tau]\[Iota]\[Sigma]\[Eta]\
+"}], "\[IndentingNewLine]", 
+ RowBox[{"\[Mu]", " ", "=", " "}]}], "Input",
+ CellChangeTimes->{{3.7956316853261285`*^9, 
+  3.795631721248429*^9}},ExpressionUUID->"372a32a4-5fc0-487c-bd55-\
+92c06ba767ac"]
+}, Open  ]]
+},
+Editable->True,
+Saveable->False,
+ScreenStyleEnvironment->"Working",
+CellInsertionPointCell->None,
+WindowSize->{1440, 817},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+WindowElements->{
+ "StatusArea", "MemoryMonitor", "MagnificationPopUp", "VerticalScrollBar", 
+  "MenuBar"},
+WindowTitle->"Three-Asset Efficient Frontier - Source",
+DockedCells->{},
+CellContext->Notebook,
+FrontEndVersion->"11.3 for Microsoft Windows (64-bit) (March 6, 2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[610, 21, 226, 6, 62, "Section",ExpressionUUID->"667fad28-a6d2-4fbf-83d9-2cb4ef89623a"],
+Cell[CellGroupData[{
+Cell[861, 31, 185, 5, 45, "Section",ExpressionUUID->"9a647a25-adab-4f4e-ae1d-39ffc2d2d80a"],
+Cell[CellGroupData[{
+Cell[1071, 40, 12332, 290, 678, "Input",ExpressionUUID->"159d8f81-a0f6-4673-9ac0-ad5237f63a66"],
+Cell[13406, 332, 9905, 184, 375, "Output",ExpressionUUID->"ce1b55b7-0221-4b90-8481-d84b2ee3fb10"],
+Cell[23314, 518, 917, 15, 35, "Message",ExpressionUUID->"7a6ebc8d-3d8a-4201-b57f-2e96165969fd"],
+Cell[24234, 535, 917, 15, 35, "Message",ExpressionUUID->"2787d374-8f72-4e11-979b-0f5dff2d2ab2"],
+Cell[25154, 552, 912, 16, 35, "Message",ExpressionUUID->"a802f448-6533-47ab-a6a3-74d0db2d5f19"],
+Cell[26069, 570, 917, 15, 35, "Message",ExpressionUUID->"10315737-2712-4e16-a053-093b1adcc870"],
+Cell[26989, 587, 416, 8, 21, "Message",ExpressionUUID->"8225b332-b9a7-4739-baeb-e578ba393406"],
+Cell[27408, 597, 910, 16, 35, "Message",ExpressionUUID->"9ee9f70c-f04e-4e48-94b2-f31aabbe3b34"],
+Cell[28321, 615, 912, 16, 35, "Message",ExpressionUUID->"3713b0cd-bda0-4bc7-a8b8-d4dfd96dfab8"],
+Cell[29236, 633, 411, 8, 21, "Message",ExpressionUUID->"22bef9ff-d1a1-4b87-aac3-1ee876585fc1"],
+Cell[29650, 643, 6659, 99, 193, "Message",ExpressionUUID->"af16eab5-12c2-443a-94d6-c2603835f46c"],
+Cell[36312, 744, 6659, 99, 193, "Message",ExpressionUUID->"213864a9-37ca-47b0-8c7a-42232d4fea00"],
+Cell[42974, 845, 6659, 99, 193, "Message",ExpressionUUID->"f82ba11f-3447-4fef-a6cb-c00320009edc"],
+Cell[49636, 946, 407, 8, 21, "Message",ExpressionUUID->"48585d6b-7698-4783-89f3-bf460c54e869"],
+Cell[50046, 956, 9068, 122, 145, "Message",ExpressionUUID->"4020f4bb-c009-4617-8ea7-33b988d4ac55"],
+Cell[59117, 1080, 9070, 122, 145, "Message",ExpressionUUID->"da8d88e2-2366-4a5f-8f57-afcc3ac2335c"],
+Cell[68190, 1204, 9068, 122, 145, "Message",ExpressionUUID->"64f93f53-5033-4720-bb45-9685e956341d"],
+Cell[77261, 1328, 411, 8, 21, "Message",ExpressionUUID->"9c2c44cf-48e0-422b-8229-f872415108ff"],
+Cell[77675, 1338, 5258, 79, 167, "Message",ExpressionUUID->"487699c1-867e-43a3-b0ce-e86966b2719d"],
+Cell[82936, 1419, 5258, 79, 167, "Message",ExpressionUUID->"87f7f5fe-d28e-43d3-99f4-682b60b119e9"],
+Cell[88197, 1500, 8030, 111, 133, "Message",ExpressionUUID->"621217d9-786a-4b83-b397-240357ecbcca"],
+Cell[96230, 1613, 7562, 104, 133, "Message",ExpressionUUID->"b090ce43-f168-41b9-927f-ef0880775afd"],
+Cell[103795, 1719, 5256, 79, 167, "Message",ExpressionUUID->"6308159d-b7b3-44ed-a89b-2a12f572fa3c"],
+Cell[109054, 1800, 411, 8, 21, "Message",ExpressionUUID->"159e67ed-160b-4dbc-b44c-b4b5e18e6866"],
+Cell[109468, 1810, 7562, 104, 133, "Message",ExpressionUUID->"4b25c09a-afe7-4f4a-8d75-055532d4067d"],
+Cell[117033, 1916, 419, 8, 21, "Message",ExpressionUUID->"8f64f4e5-52cb-4dea-94c7-c731be48416f"]
+}, Open  ]],
+Cell[117467, 1927, 512, 13, 28, "Input",ExpressionUUID->"a8dd7cd7-134d-40de-84f2-1fb1bab2b155"],
+Cell[117982, 1942, 331, 7, 48, "Input",ExpressionUUID->"372a32a4-5fc0-487c-bd55-92c06ba767ac"]
+}, Open  ]]
+}
+]
+*)
+
